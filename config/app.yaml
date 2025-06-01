@@ -1,0 +1,316 @@
+# CODAI Master Configuration
+# This file consolidates all application settings
+# Use environment-specific overrides in environments/*.yaml
+
+# Server Configuration
+server:
+  host: "127.0.0.1"
+  port: 8000
+  frontend_port: 8001
+  backend_url: "http://127.0.0.1:8000"
+  frontend_url: "http://127.0.0.1:8001"
+  
+  # Reload settings
+  reload:
+    enabled: false
+    delay: 0.25
+    max_retries: 3
+    clear_terminal: true
+    
+  # Timeouts
+  timeouts:
+    request: 1200.0
+    startup_delay: 1.0
+    shutdown: 10.0
+    
+  # CORS settings
+  cors:
+    enabled: true
+    allow_origins: ["*"]
+    allow_methods: ["*"]
+    allow_headers: ["*"]
+
+# API Configuration
+api:
+  # Rate limiting
+  rate_limiting:
+    requests_per_minute: 100
+    window_size: 60
+    
+  # Retry configuration  
+  retry:
+    max_retries: 3
+    base_delay: 1.0
+    max_delay: 10.0
+    exponential_base: 2.0
+    
+  # Cache configuration
+  cache:
+    ttl: 3600
+    max_size: 10000
+    token_cache_size: 1000
+    
+  # Response configuration
+  response:
+    max_content_length: 1000000
+    max_message_length: 32768
+    max_content_blocks: 100
+
+# Conversation Configuration
+conversation:
+  # Token management
+  tokens:
+    max_context: 200000
+    max_per_message: 32000
+    min_per_message: 1
+    
+  # Summarization
+  summarization:
+    enabled: true
+    threshold_percentage: 0.8
+    min_messages: 4
+    keep_recent_messages: 2
+    marker: "Previous conversation summary:"
+    acknowledgment: "Understood. Continuing with this context."
+    max_summary_tokens: 8192
+    
+  # Section configuration
+  sections:
+    first:
+      min_pairs: 2
+    middle:
+      min_pairs: 2
+    last:
+      min_pairs: 5
+
+# Tool Configuration
+tools:
+  # Computer use tool
+  computer:
+    enabled: true
+    display:
+      width: 1024
+      height: 800
+    timing:
+      typing_delay_ms: 12
+      typing_group_size: 50
+      screenshot_delay: 2.0
+      
+  # File operations
+  file:
+    max_size: 8000000
+    content_limits:
+      max_length: 256000
+      chunk_size: 8000
+    supported_formats: ["cli", "web"]
+    code_processing:
+      wrap_code: true
+      add_line_numbers: false
+      default_language: "text"
+      max_preview_lines: 1000
+      show_features: true
+      
+  # PDF tool
+  pdf:
+    enabled: true
+    
+  # Web tools
+  web:
+    enabled: true
+    interaction_enabled: true
+    search:
+      default_engine: "duckduckgo"
+      available_engines: ["duckduckgo", "google", "bing"]
+
+# Logging Configuration
+logging:
+  # Log levels by module
+  levels:
+    default: "INFO"
+    api: "DEBUG"
+    tools: "INFO"
+    setup: "INFO"
+    
+  # File configuration
+  file:
+    enabled: true
+    path: "logs/"
+    max_size: 10485760  # 10MB
+    backup_count: 5
+    
+  # Console configuration
+  console:
+    enabled: true
+    colorized: true
+    
+  # Rotation settings
+  rotation:
+    max_size_mb: 10
+    backup_count: 5
+    retention_days: 30
+
+# Frontend Configuration
+frontend:
+  # API endpoints
+  api:
+    base_url: "http://127.0.0.1:8000"
+    timeout: 30000
+    
+  # Feature flags
+  features:
+    extended_thinking: true
+    conversation_inspector: true
+    monitoring_dashboard: true
+    computer_use: true
+    
+  # UI settings
+  ui:
+    animations:
+      enabled: true
+      duration: 300
+    scroll:
+      threshold: 100
+      auto_scroll: true
+    messages:
+      batch_size: 50
+      load_more_threshold: 10
+
+# Development Configuration
+development:
+  # Debug settings
+  debug:
+    enabled: true
+    verbose: false
+    log_requests: true
+    log_directory: "debug/logs"
+    
+    # Debug logging categories
+    categories:
+      # Communication & API
+      ai_api_calls: false
+      stream_processing: false
+      
+      # Conversation management
+      conversation_versions: false
+      conversation_preparation_validation: false
+      history_state: false
+      conversation_persistence: false
+      conversation_persistence_debug: false
+      conversation_preparation: false
+      
+      # Summarization
+      pair_limiting: false
+      summarization_validation: false
+      
+      # Token counting
+      token_counting: false
+      token_validation: false
+      
+      # Cache management
+      cache_management: false
+      
+      # Tool interaction
+      tool_calls: false
+      tool_responses: false
+      
+      # Message processing
+      message_cleaning: false
+      message_ordering: false
+      
+      # Session management
+      session_state: false
+      session_lifecycle: false
+      
+      # Expert mode
+      expert_mode: true
+    
+  # Hot reload settings
+  hot_reload:
+    backend: true
+    frontend: true
+    watch_paths: ["core/", "server/", "tools/", "config/"]
+    watch_patterns: ["*.py", "*.yaml"]
+    exclude_patterns: ["__pycache__", "*.pyc", "logs/", "*.log"]
+    
+  # Server settings
+  settings:
+    reload_delay: 0.25
+    clear_terminal: true
+    
+  # Error handling
+  error_handling:
+    show_stack_traces: true
+    detailed_errors: true
+
+# Production Configuration
+production:
+  # Security
+  security:
+    enforce_https: true
+    csrf_protection: true
+    
+  # Performance
+  performance:
+    enable_compression: true
+    cache_static_files: true
+    
+  # Error handling
+  error_handling:
+    show_stack_traces: false
+    detailed_errors: false
+
+# Model Configuration
+models:
+  # Claude 4 Opus - Most powerful model
+  claude-4-opus-20250514:
+    name: "Claude 4 Opus"
+    display_name: "Powerful"
+    description: "Maximum capabilities for complex tasks"
+    max_tokens: 32000
+    max_context_tokens: 200000
+    supports_tools:
+      text_editor: true
+      computer_use: true
+      web_search: true
+      file_operations: true
+    tier: "powerful"
+    
+  # Claude 4 Sonnet - Balanced model (default)
+  claude-4-sonnet-20250514:
+    name: "Claude 4 Sonnet"
+    display_name: "Balanced"
+    description: "Great performance for most tasks"
+    max_tokens: 32000
+    max_context_tokens: 200000
+    supports_tools:
+      text_editor: true
+      computer_use: true
+      web_search: true
+      file_operations: true
+    tier: "balanced"
+    is_default: true
+    
+  # Claude 3.5 Haiku - Light model
+  claude-3-5-haiku-20241022:
+    name: "Claude 3.5 Haiku"
+    display_name: "Light"
+    description: "Fast responses for simple tasks"
+    max_tokens: 8192
+    max_context_tokens: 200000
+    supports_tools:
+      text_editor: false  # Not supported by Haiku
+      computer_use: true
+      web_search: true
+      file_operations: true
+    tier: "light"
+
+# Model selection configuration
+model_selection:
+  allowed_models:
+    - "claude-4-opus-20250514"
+    - "claude-4-sonnet-20250514"
+    - "claude-3-5-haiku-20241022"
+  default_model: "claude-4-sonnet-20250514"
+  validation:
+    enabled: true
+    fallback_to_default: true

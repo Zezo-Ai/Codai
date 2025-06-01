@@ -1,0 +1,302 @@
+/**
+ * Token Metrics Chart Styles
+ */
+
+/* --------------------------------- */
+/* Core Layout Components            */
+/* --------------------------------- */
+
+/* Base Container */
+.token-metrics {
+  position: relative;
+  overflow: visible !important;
+}
+
+.token-metrics-content {
+  position: relative;
+  overflow: visible !important;
+}
+
+/* Main Chart Container */
+.chart-wrapper {
+  position: relative;
+  height: 180px;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+  margin-bottom: 5px;
+  padding: 12px 12px 12px 12px;
+}
+
+.chart-layout {
+  height: 150px;
+  display: flex;
+  position: relative;
+}
+
+/* --------------------------------- */
+/* Chart Header Components           */
+/* --------------------------------- */
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chart-title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.legend-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+}
+
+.legend-dot-input {
+  background-color: #818cf8;
+}
+
+.legend-dot-output {
+  background-color: #34d399;
+}
+
+.legend-label {
+  font-size: 0.625rem;
+  color: #6b7280;
+}
+
+/* --------------------------------- */
+/* Chart Grid and Axes               */
+/* --------------------------------- */
+
+/* Y-Axis */
+.y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 10px);
+  width: 24px;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.y-axis-label {
+  font-size: 0.5rem;
+  color: #9ca3af;
+  transform: translateY(-50%);
+  text-align: right;
+  padding-right: 10px;
+}
+
+/* Grid Lines */
+.grid-lines {
+  position: absolute;
+  inset: 0;
+  top: 4px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+  width: 100%;
+}
+
+.grid-line {
+  width: 100%;
+  border-top: 1px solid #e5e7eb;
+  opacity: 0.3;
+}
+
+/* --------------------------------- */
+/* Chart Content Area               */
+/* --------------------------------- */
+
+.chart-area {
+  flex: 1;
+  position: relative;
+  margin-left: 0px;
+  height: 100%;
+}
+
+/* Scroll Container */
+.chart-scroll-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -10px;  /* Changed from -15px to -10px to move scrollbar up */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  padding-top: 4px;
+}
+
+/* Bars Container */
+.bars-container {
+  height: calc(100% - 24px);
+  position: relative;
+  padding-top: 4px;
+}
+
+.bars-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 100%;
+  width: fit-content;
+  min-width: 100%;
+  padding: 0 4px;
+}
+
+/* Bar Components */
+.bar-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 24px;
+}
+
+.bar-columns {
+  width: 100%;
+  height: 112px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2px;
+}
+
+.bar-column {
+  width: 10px;
+  margin: 0 auto;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  transition: all 0.2s;
+  min-height: 2px;
+  height: var(--bar-height, 0%);
+}
+
+.bar-column-output {
+  background-color: #34d399;
+}
+
+.bar-column-input {
+  background-color: #818cf8;
+}
+
+.bar-label {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.5rem;
+  color: #9ca3af;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+/* --------------------------------- */
+/* Scrollbar Styles                  */
+/* --------------------------------- */
+
+/* Webkit scrollbar */
+.chart-scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(148 163 184) transparent;
+}
+
+.chart-scroll-container::-webkit-scrollbar {
+  height: 2px;
+  width: 2px;
+}
+
+.chart-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+  border-bottom: 3px solid transparent;  /* Creates space above scrollbar */
+}
+
+.chart-scroll-container::-webkit-scrollbar-thumb {
+  background-color: rgb(148 163 184);
+  border-radius: 0;
+  border-bottom: 3px solid transparent;  /* Creates space above scrollbar */
+}
+
+.chart-scroll-container::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(100 116 139);
+}
+
+/* Firefox scrollbar */
+@supports (scrollbar-width: thin) {
+  .chart-scroll-container {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(148 163 184) transparent;
+  }
+}
+
+/* --------------------------------- */
+/* Tooltip Components                */
+/* --------------------------------- */
+
+.tooltip-portal {
+  position: fixed;
+  pointer-events: none;
+}
+
+.tooltip-content {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  width: max-content;
+  max-width: 200px;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.bar-item.bar-item-hovered .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tooltip-title {
+  font-weight: 500;
+  color: #374151;
+}
+
+.tooltip-metrics {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.625rem;
+}
+
+.tooltip-metric {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.tooltip-total {
+  font-size: 0.625rem;
+  color: #6b7280;
+}

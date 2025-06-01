@@ -1,0 +1,145 @@
+# Base configuration file for the application
+# Most settings have been moved to app.yaml for centralization
+
+# Tools Configuration
+tools:
+  computer:
+    enabled: true
+    display:
+      width: 1024
+      height: 800
+    timing:
+      typing_delay_ms: 12
+      typing_group_size: 50
+      screenshot_delay: 2.0
+
+  file:
+    max_size: 8000000 # 8MB (increased 4x)
+    content_limits:
+      max_length: 256000 # 256K (increased 4x)
+      chunk_size: 8000 # 8K (increased 4x)
+    supported_formats: ["cli", "web"]
+    code_processing:
+      wrap_code: true
+      add_line_numbers: false
+      default_language: "text"
+      max_preview_lines: 1000
+      show_features: true
+
+  pdf:
+    enabled: true # Enable PDF tool by default
+
+  web:
+    enabled: true # Enable web tools by default
+    interaction_enabled: true # Enable web interaction tool by default
+    search:
+      default_engine: "duckduckgo" # Default search engine
+      max_results: 5 # Maximum number of results to return
+    fetcher:
+      default_extract_mode: "main_content" # Default content extraction mode
+      max_content_length: 50000 # Maximum content length in characters
+    interaction:
+      timeout: 30000 # Default timeout for interactions in milliseconds
+      user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+      viewport:
+        width: 1280
+        height: 720
+      security:
+        sanitize_inputs: true # Sanitize input values for security
+        max_form_fields: 20 # Maximum number of form fields to fill in one operation
+    # API keys for search engines - should be empty in base config, filled in local.yaml
+    api_keys:
+      google: "" # Google SERP API key (if needed)
+      bing: "" # Bing API key (if needed)
+
+# Logging Configuration
+logging:
+  default_level: "INFO"
+  dir: "logs"
+  rotation:
+    max_bytes: 10485760 # 10MB
+    backup_count: 5
+  retention_days: 30
+  security:
+    mask_patterns:
+      - "api_key=\\S+"
+      - "token=\\S+"
+      - "password=\\S+"
+      - "secret=\\S+"
+
+# Monitoring Configuration
+monitoring:
+  enabled: true
+  metrics_interval: 300 # 5 minutes
+  alert_thresholds:
+    error_rate: 0.1 # 10% error rate threshold
+    response_time: 5000 # 5 seconds
+    disk_usage: 0.9 # 90%
+
+# Feature Flags
+features:
+  beta: ["computer-use-2025-01-24", "interleaved-thinking-2025-05-14"] # Claude 4 beta headers
+
+# AI Configuration
+ai:
+  models:
+    claude3:
+      max_context_tokens: 200000 # Total context window size
+      max_tokens_per_message: 32000 # Doubled message token limit
+      summary_threshold: 0.8 # When to trigger summary (80% of max for testing)
+  conversation:
+    section:
+      first:
+        min_pairs: 2 # Minimum pairs to keep in first section
+      middle:
+        min_pairs: 2 # Minimum pairs required in middle section
+      last:
+        min_pairs: 5 # Minimum pairs to keep in last section
+  token_management:
+    track_usage: true
+    enable_summarization: false # Enabled for long-running conversation support
+    summary_triggers:
+      threshold_percentage: 0.8 #80% of max context tokens for testing
+      threshold_min_messages: 4 # Need at least 4 messages to summarize to 2 pairs
+      error_recovery: true # Summarize on context length errors
+    summarization:
+      structure:
+        summary_marker: "Previous conversation summary:"
+        assistant_acknowledgment: "I understand this summary of our previous conversation. I'll continue with this context in mind while keeping my responses focused and relevant to your requests."
+      content:
+        max_summary_tokens: 8192
+        preserve_types: true
+        group_similar: true
+  # Extended Thinking Configuration - Anthropic's Native API Feature
+  extended_thinking:
+    enabled: true # Master toggle for extended thinking
+    auto_detect: true # Automatically detect complex problems
+    triggers:
+      # Triggers that automatically enable extended thinking mode
+      question_complexity: true # Enable for complex questions
+      code_generation: true # Enable when generating substantial code
+      analysis_tasks: true # Enable for in-depth analysis
+      design_tasks: true # Enable for system design
+      math_problems: true # Enable for mathematical calculations
+    settings:
+      # Official Anthropic API parameters for extended thinking
+      budget_tokens: 5000 # Token budget for extended thinking (min 1024)
+      show_thinking: true # Whether to display thinking blocks to users
+      thinking_token_tracking: true # Track thinking tokens separately for analytics
+      scaling_settings:
+        simple_tasks: 1024 # Minimum budget for simple tasks
+        standard_tasks: 4000 # Medium budget for standard tasks
+        complex_tasks: 8000 # Large budget for complex tasks
+        very_complex_tasks: 16000 # Very large budget for extremely complex tasks
+    ui:
+      # UI display settings for extended thinking
+      thinking_indicator: "Thinking deeply..." # UI indicator during thinking process
+      thinking_prefix: "🧠" # Icon or prefix for thinking blocks
+      redacted_indicator: "Some thinking has been temporarily obscured for safety purposes."
+      show_explainer: true # Show an explainer the first time a user sees thinking blocks
+  # Expert Mode - Two-phase adaptive expertise system
+  expert_mode:
+    enabled: true # When enabled, always uses two-phase approach
+    settings:
+      phase1_max_tokens: 1000 # Token limit for analysis phase
+      stream_phase1: true # Don't stream phase 1 to user

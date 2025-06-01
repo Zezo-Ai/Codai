@@ -1,0 +1,88 @@
+# Development environment specific configuration
+
+extends: base.yaml
+
+server:
+  reload: true  # Enable hot reload for development
+  clean_logs_on_restart: true  # Always clean logs when restarting in development
+  reload_delay: 0.25  # Reduced delay for faster reloads
+  clear_terminal_on_reload: true  # Clear terminal on each reload
+  # File patterns to watch
+  watch_patterns: 
+    - "**/*.py"      # All Python files
+    - "**/*.yaml"    # All YAML files
+    - ".env"         # Environment file
+    - "requirements.txt"
+  reload_notifications:
+    enabled: true
+    show_file_changes: true  # Show which files triggered the reload
+    show_timestamp: true     # Show when reloads occur
+  watch_paths:  # Paths to watch for changes
+    # Root-level files
+    - "run_server.py"       # Main server script
+    - "requirements.txt"    # Python dependencies
+    - ".env"               # Environment variables
+    
+    # Core backend components
+    - "server"           # FastAPI server code
+    - "core"            # Core functionality
+    - "tools"           # Utility tools
+    - "config"          # Configuration files
+    
+    # API and Infrastructure
+    - "server/routes"          # API endpoints
+    - "server/middleware"      # Request/Response middleware
+    - "server/infrastructure"  # Server infrastructure
+    - "core/api"              # API clients and interfaces
+    
+    # Tool components
+    - "tools/edit"            # File editing tools
+    - "tools/system_ops"      # System operations
+    - "tools/path_handler"    # Path handling utilities
+    
+    # Type definitions and utilities
+    - "core/types"           # Type definitions
+    - "core/stability"       # Stability components
+    
+  exclude_patterns:  # Patterns to exclude from watching
+    - "**/__pycache__/**"
+    - "**/*.pyc"
+    - "**/.git/**"
+    - "**/node_modules/**"
+    - "**/.next/**"
+    - "**/venv/**"
+    - "**/.mypy_cache/**"
+    - "**/.pytest_cache/**"
+    - "**/logs/**"
+    - "**/.coverage"
+    - "**/.env*"
+  cors:
+    enabled: true
+    allow_origins: ["*"]
+
+development:
+  show_config_on_startup: true  # Show active configuration when starting
+  debug_endpoints: true  # Enable debugging endpoints
+  profiling:  # Performance profiling settings
+    enabled: true
+    stats_interval: 60  # Seconds between stats updates
+    include_memory: true
+    include_cpu: true
+
+logging:
+  default_level: "DEBUG"
+  console:
+    enabled: true
+    level: "DEBUG"
+  file:
+    enabled: true
+    level: "DEBUG"
+
+monitoring:
+  enabled: false  # Disable monitoring in development
+
+# AI Configuration
+ai:
+  # Enable expert mode in development
+  expert_mode:
+    enabled: true

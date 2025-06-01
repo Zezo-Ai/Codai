@@ -1,0 +1,160 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SpanBasedResponse",
+  "description": "Schema for AI responses using direct HTML spans with class-based styling",
+  "type": "object",
+  "version": "4.0.0",
+  "properties": {
+    "format": {
+      "type": "string",
+      "enum": ["span-based"],
+      "description": "Specifies the response format as span-based"
+    },
+    "state_classes": {
+      "type": "array",
+      "description": "Valid state classes for the outer span element",
+      "items": {
+        "type": "string",
+        "enum": [
+          "state-CONTENT",
+          "state-TOOL_CALL",
+          "state-TOOL_RESULT",
+          "state-THINKING",
+          "state-ERROR"
+        ]
+      }
+    },
+    "block_classes": {
+      "type": "array",
+      "description": "Valid content block classes for the inner span element",
+      "items": {
+        "type": "string",
+        "enum": [
+          "block-tag-text",
+          "block-tag-rich-text",
+          "block-tag-code",
+          "block-tag-table",
+          "block-tag-math",
+          "block-tag-diagram",
+          "block-tag-image",
+          "block-tag-terminal",
+          "block-tag-error",
+          "block-tag-warning",
+          "block-tag-note",
+          "block-tag-success",
+          "block-tag-info",
+          "block-tag-steps",
+          "block-tag-step"
+        ]
+      }
+    },
+    "data_attributes": {
+      "type": "object",
+      "description": "Valid data attributes for block elements",
+      "properties": {
+        "common": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["data-id", "data-format"]
+          },
+          "description": "Common data attributes for all blocks"
+        },
+        "block_specific": {
+          "type": "object",
+          "properties": {
+            "block-tag-code": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["data-language", "data-filename"]
+              }
+            },
+            "block-tag-table": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["data-caption"]
+              }
+            },
+            "block-tag-math": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["data-display", "data-format"]
+              }
+            },
+            "block-tag-diagram": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["data-type"]
+              }
+            },
+            "block-tag-text": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["data-format"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "examples": {
+      "type": "array",
+      "description": "Example responses in the span-based format",
+      "items": {
+        "type": "string"
+      },
+      "examples": [
+        "<span class=\"state-CONTENT\">\n  <span class=\"block-tag-text\">\n    <p>This is a simple text response.</p>\n  </span>\n</span>",
+        "<span class=\"state-CONTENT\">\n  <span class=\"block-tag-text\">\n    <p>Here's an example of Python code:</p>\n  </span>\n</span>\n<span class=\"state-CONTENT\">\n  <span class=\"block-tag-code\" data-language=\"python\">\ndef hello_world():\n    print(\"Hello, world!\")\n  </span>\n</span>",
+        "<span class=\"state-CONTENT\">\n  <span class=\"block-tag-text\">\n    <p>Here's a complex example:</p>\n    <span class=\"block-tag-code\" data-language=\"javascript\">\nconsole.log(\"Nested code\");\n    </span>\n    <p>The code above is nested.</p>\n  </span>\n</span>"
+      ]
+    },
+    "nesting_rules": {
+      "type": "object",
+      "description": "Rules for nesting blocks",
+      "properties": {
+        "allowed": {
+          "type": "boolean",
+          "description": "Whether blocks can be nested inside other blocks",
+          "default": true
+        },
+        "structure": {
+          "type": "object",
+          "description": "Structure rules for spans",
+          "properties": {
+            "state_span": {
+              "type": "string",
+              "description": "Outer span with state class",
+              "enum": ["required"]
+            },
+            "block_span": {
+              "type": "string",
+              "description": "Inner span with block class",
+              "enum": ["required"]
+            }
+          },
+          "required": ["state_span", "block_span"]
+        },
+        "restrictions": {
+          "type": "array",
+          "description": "Restrictions on nesting",
+          "items": {
+            "type": "string"
+          },
+          "examples": [
+            "State spans must be the outermost container",
+            "Block spans must be direct children of state spans",
+            "Block spans can contain other block spans",
+            "Code blocks should not contain other blocks"
+          ]
+        }
+      }
+    }
+  },
+  "required": ["format", "state_classes", "block_classes"]
+}

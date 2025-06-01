@@ -1,5 +1,32 @@
 anthropic
-PyYAML
-colorama
+fastapi>=0.109.1
+uvicorn
 rich
-matplotlib
+pydantic
+python-multipart
+pyautogui
+requests
+pillow
+beautifulsoup4>=4.12.0
+aiohttp>=3.8.4
+brotli>=1.0.9
+python-dotenv>=1.0.1
+selenium>=4.16.0    # For web interaction tool
+webdriver-manager>=4.0.1  # For automatic webdriver management
+chardet>=5.1.0     # For character encoding detection
+
+# Logging dependencies
+pyyaml>=6.0.1
+psutil>=5.9.0
+colorama>=0.4.6
+python-json-logger>=2.0.7
+
+# Development dependencies
+watchfiles>=0.21.0  # For hot reload notifications
+
+# Database and encryption dependencies
+sqlalchemy>=2.0.0  # For database ORM
+cryptography>=41.0.0  # For API key encryption
+
+# Windows-specific dependencies
+pywin32>=306; sys_platform == 'win32'  # For Windows API access (computer use tool)

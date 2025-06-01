@@ -1,0 +1,22 @@
+# Production environment specific configuration
+
+extends: base.yaml
+
+server:
+  host: "0.0.0.0"  # Listen on all interfaces
+  reload: false
+  cors:
+    enabled: true
+    allow_origins: 
+      - "https://your-production-domain.com"
+    
+logging:
+  default_level: "WARNING"
+  console:
+    enabled: false
+  
+monitoring:
+  enabled: true
+  alert_thresholds:
+    error_rate: 0.05  # More strict in production
+    response_time: 3000  # More strict in production

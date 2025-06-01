@@ -1,0 +1,31 @@
+CODAI - Evolved Intelligence
+Copyright (c) 2025 Arian Rudd
+
+This product includes software originally developed by Arian Rudd.
+Project Name: CODAI
+Original Author: Arian Rudd
+Website: https://codai.ai
+X/Twitter: https://x.com/AriRudd
+Repository: [Your GitHub URL here]
+
+ATTRIBUTION NOTICE:
+When using, modifying, or distributing this software, please include
+the following attribution in your documentation, about page, or credits:
+
+"Powered by CODAI - Originally created by Arian Rudd"
+
+or
+
+"Based on CODAI by Arian Rudd"
+
+This attribution helps maintain the connection to the original project
+and supports the open source community.
+
+THIRD-PARTY LICENSES:
+This software incorporates components from various open source projects.
+See the dependencies in pyproject.toml and package.json for full details.
+
+NO WARRANTY:
+This software is provided "as is" without warranty of any kind, either
+expressed or implied. The entire risk as to the quality and performance
+of the software is with you.

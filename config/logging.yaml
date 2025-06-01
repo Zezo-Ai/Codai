@@ -1,0 +1,176 @@
+version: 1
+logging:
+  default_level: INFO
+  log_dir: logs
+  max_bytes: 10485760  # 10MB
+  backup_count: 5
+  retention_days: 30
+
+  formatters:
+    json:
+      class: core.logging.formatters.JsonFormatter
+      format: json
+
+    colored:
+      class: core.logging.formatters.ColoredFormatter
+      format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+    detailed:
+      format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+      datefmt: "%Y-%m-%d %H:%M:%S"
+
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: INFO
+      formatter: colored
+      stream: ext://sys.stdout
+
+    base_file:
+      class: logging.handlers.RotatingFileHandler
+      formatter: json
+      filename: ${LOG_DIR}/${CATEGORY}/main.log  # Base logs go directly in category root
+      maxBytes: ${LOGGING_MAX_BYTES}
+      backupCount: ${LOGGING_BACKUP_COUNT}
+
+    base_error:
+      class: logging.handlers.RotatingFileHandler
+      formatter: json
+      filename: ${LOG_DIR}/${CATEGORY}/errors.log  # Base errors go directly in category root
+      maxBytes: ${LOGGING_MAX_BYTES}
+      backupCount: ${LOGGING_BACKUP_COUNT}
+      level: ERROR
+
+    specialized_file:
+      class: logging.handlers.RotatingFileHandler
+      formatter: json
+      filename: ${LOG_DIR}/${CATEGORY}/${SUBCATEGORY}/${NAME}.log  # Specialized logs go in subfolders
+      maxBytes: ${LOGGING_MAX_BYTES}
+      backupCount: ${LOGGING_BACKUP_COUNT}
+
+    server_access:
+      class: logging.handlers.RotatingFileHandler
+      formatter: detailed
+      filename: ${LOG_DIR}/server/access/access.log
+      maxBytes: ${LOGGING_MAX_BYTES}
+      backupCount: ${LOGGING_BACKUP_COUNT}
+      level: INFO
+
+    server_metrics:
+      class: logging.handlers.RotatingFileHandler
+      formatter: json
+      filename: ${LOG_DIR}/server/metrics/metrics.log
+      maxBytes: ${LOGGING_MAX_BYTES}
+      backupCount: ${LOGGING_BACKUP_COUNT}
+      level: INFO
+
+  loggers:
+    # Base loggers write directly to category root
+    ai:
+      level: INFO
+      handlers: [console, base_file, base_error]
+      qualname: ai._base
+      propagate: false
+
+    server:
+      level: INFO
+      handlers: [console, base_file, base_error]
+      qualname: server._base
+      propagate: false
+
+    tools:
+      level: INFO
+      handlers: [console, base_file, base_error]
+      qualname: tools._base
+      propagate: false
+
+    security:
+      level: INFO
+      handlers: [base_file, base_error]
+      qualname: security._base
+      propagate: false
+
+    # Specialized loggers
+    ai.chat:
+      level: INFO
+      handlers: [console, specialized_file]
+      qualname: ai.chat
+      propagate: false
+
+    ai.inference:
+      level: INFO
+      handlers: [console, specialized_file]
+      qualname: ai.inference
+      propagate: false
+
+    server.access:
+      level: INFO
+      handlers: [server_access]
+      qualname: server.access
+      propagate: false
+
+    server.metrics:
+      level: INFO
+      handlers: [server_metrics]
+      qualname: server.metrics
+      propagate: false
+
+    tools.file_edit:
+      level: INFO
+      handlers: [console, specialized_file]
+      qualname: tools.file_edit
+      propagate: false
+
+    tools.system:
+      level: INFO
+      handlers: [console, specialized_file]
+      qualname: tools.system
+      propagate: false
+
+    tools.computer:
+      level: INFO
+      handlers: [console, specialized_file]
+      qualname: tools.computer
+      propagate: false
+
+    tools.browser:
+      level: INFO
+      handlers: [console, specialized_file]
+      qualname: tools.browser
+      propagate: false
+
+    tools.packages:
+      level: INFO
+      handlers: [console, specialized_file]
+      qualname: tools.packages
+      propagate: false
+
+    ai.prompts:
+      level: INFO
+      handlers: [console, specialized_file]
+      qualname: ai.prompts
+      propagate: false
+
+    ai.tokens:
+      level: INFO
+      handlers: [console, specialized_file]
+      qualname: ai.tokens
+      propagate: false
+
+  root:
+    level: INFO
+    handlers: [console, file]
+
+  security:
+    mask_patterns:
+      - "api_key=\\S+"
+      - "token=\\S+"
+      - "password=\\S+"
+      - "secret=\\S+"
+
+  monitoring:
+    enabled: true
+    metrics_interval: 300  # 5 minutes
+    alert_thresholds:
+      error_rate: 0.1  # 10% error rate threshold
+      response_time: 5000  # 5 seconds response time threshold

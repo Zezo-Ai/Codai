@@ -1,0 +1,21 @@
+# Local Configuration Example
+# Copy this file to local.yaml and customize for your local development
+
+# Example local overrides - customize as needed
+tools:
+  computer:
+    enabled: true
+    display:
+      width: 1920
+      height: 1080
+
+# Local development settings
+server:
+  port: 8000
+  debug: true
+
+# AI configuration overrides
+ai:
+  extended_thinking:
+    budget_tokens: 8000
+    show_thinking: true

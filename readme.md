@@ -1,89 +1,296 @@
-# CODAI - Coding Evolved
+# CODAI - Evolved Intelligence
 
-CODAI is a revolutionary system designed to evolve the art and science of coding. It leverages the power of the Anthropic Claude API to provide intelligent responses, perform various project-related tasks, and push the boundaries of software development.
+**Created by [Arian Rudd](https://x.com/AriRudd)**
 
-## Features
+Turn ideas into production-ready apps and solutions. Zero code required. CODAI enables anyone to build fully functional applications using natural language.
 
-- Interactive conversation with an AI assistant specialized in coding and software engineering
-- File and project structure analysis
-- Code reading and creation capabilities
-- Intelligent code editing and suggestions
-- Project study and comprehensive analysis
-- Cache performance metrics and visualization
+🌐 **Website**: [codai.ai](https://codai.ai)  
+🐦 **Creator**: [@AriRudd](https://x.com/AriRudd)
 
-## Installation
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Author](https://img.shields.io/badge/Author-Arian%20Rudd-blue)](https://x.com/AriRudd)
+[![Website](https://img.shields.io/badge/Website-codai.ai-green)](https://codai.ai)
+
+## Project Structure
+```
+CODAI/
+├── server/              # FastAPI backend
+│   ├── routes/         # API endpoints
+│   ├── middleware/     # Request middleware
+│   └── app.py         # Main application
+├── frontend/           # Next.js frontend
+│   ├── src/           # Source code
+│   │   ├── components/# React components
+│   │   ├── hooks/     # Custom hooks
+│   │   └── lib/       # Utilities
+│   └── package.json   # Frontend dependencies
+├── core/              # Core backend functionality
+│   ├── api/          # Claude API integration
+│   ├── logging/      # Logging system
+│   └── schemas/      # Data schemas
+├── tools/            # Tool implementations
+│   ├── computer/     # Computer use tools
+│   ├── web/          # Web interaction
+│   └── pdf/          # PDF processing
+├── config/           # YAML configuration
+└── Docs/             # Documentation
+```
+
+## Prerequisites
+
+- Python 3.9+
+- Node.js 18+
+- Git
+- Anthropic API key
+
+## Deployment Options
+
+### 🌐 Web-Based Version (Available Now)
+The open-source web version allows you to run CODAI in your browser with full functionality. Perfect for:
+- Immediate access without installation
+- Cross-platform compatibility (Windows, Mac, Linux)
+- Team collaboration
+- Cloud deployment
+
+### 💻 Desktop Version (Available Now)
+Native Electron desktop application with enhanced capabilities:
+- Self-contained application (no separate install required)
+- Local file system access with native dialogs
+- Bundled Python backend (no Python install needed)
+- Works offline once installed
+- Available for Windows, macOS, and Linux
+
+## Quick Start
 
 1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/codai.git
-   cd codai
-   ```
-
-2. Create and activate the virtual environment:
-   ```
-   python -m venv sandbox_env
-   source sandbox_env/bin/activate  # On Windows, use `sandbox_env\Scripts\activate`
-   ```
-
-3. Install the required dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-
-4. Set up your configuration:
-   - Copy the `.env.example` file to `.env`:
-     ```
-     cp .env.example .env
-     ```
-     (Note: A temporary config.yaml is currently being used)
-   - Edit the `.env` file and add your Anthropic API key
-
-5. Configure the `config.yaml` file with your preferred settings
-
-## Usage
-
-To start CODAI, ensure you're in the project directory and your virtual environment is activated, then run:
-
-```
-python codai.py
+```bash
+git clone https://github.com/thecodai/Codai
+cd Codai
 ```
 
-Once started, you can interact with CODAI using various commands:
+2. Choose your platform:
 
-- `/help`: Show the help message with available commands
-- `/clear`: Clear the screen
-- `/list files [path]`: List files in the specified path
-- `/context files`: List files currently in the context
-- `/read <filename>`: Display the contents of the specified file
-- `/read folder [path] [subfolders]`: Read and display contents of all files in the specified folder
-- `/create file <path> <content>`: Create a new file with the specified content
-- `/create folder <path>`: Create a new folder at the specified path
-- `/project structure [path] [options]`: Display the project structure
-- `/project study [path] [include-ignored] [output=<filename>]`: Analyze project structure and create a detailed JSON report
-- `/exit`: End the conversation and exit CODAI
+### For Desktop Application (Electron)
 
-For any other input, CODAI will interpret it as a question or task related to your project.
+#### Windows
+```powershell
+# Run the Electron setup wizard
+.\setup-electron.ps1
+# or
+setup-electron.bat
 
-## Dependencies
+# Start the desktop app
+npm run dev
+```
 
-CODAI relies on the following main libraries:
+#### Linux/macOS
+```bash
+# Run the Electron setup
+./setup-electron.sh
 
-- anthropic
-- PyYAML
-- colorama
-- rich
-- matplotlib
+# Start the desktop app
+npm run dev
+```
 
-For a complete list of dependencies, please refer to the `requirements.txt` file.
+### For Web Application
 
-## Contributing
+#### Windows Users
 
-Contributions to CODAI are welcome! Please feel free to submit pull requests, create issues or spread the word.
+#### Option A: PowerShell Setup (Recommended)
+```powershell
+.\setup.ps1
+```
+This provides a user-friendly wizard interface with colored output and system checks.
 
-## License
+#### Option B: Command Prompt
+```cmd
+setup.bat
+```
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+#### Option C: Python Module
+```bash
+python -m setup
+```
 
-## Acknowledgements
+### Linux/macOS Users
 
-CODAI is powered by the Anthropic Claude API and various open-source libraries. We thank all the contributors and maintainers of these projects.
+#### Option A: Bash Setup Script (Recommended)
+```bash
+./setup.sh
+```
+This provides a user-friendly wizard interface with colored output and system checks.
+
+#### Option B: Python Module
+```bash
+python -m setup
+```
+
+This will:
+- Create virtual environment
+- Install Python dependencies
+- Install frontend dependencies
+- Set up configuration files
+- Initialize the database
+
+4. Set your API key in the UI:
+- Open http://localhost:8001
+- Click Settings → API Keys
+- Add your Anthropic API key
+
+## Running the Application
+
+### Backend (Port 8000)
+```bash
+python run_server.py
+# Or with options:
+python run_server.py --env development --log-level debug
+```
+
+### Frontend (Port 8001)
+```bash
+cd frontend
+npm run dev
+```
+
+### Testing
+```bash
+# Backend tests
+pytest
+
+# Frontend tests
+cd frontend
+npm test
+npm run lint
+```
+
+## What Makes CODAI Different
+
+### 🚀 Turn Ideas Into Apps
+- **No Coding Required**: If you can describe it, CODAI can build it
+- **As Simple as Google**: Just type what you want in plain English
+- **Complete Applications**: Not just code snippets - full, production-ready apps
+- **Open Source**: Web-based version available now, desktop version coming soon
+
+### 🧠 Advanced AI Capabilities
+- **Claude 4 Integration**: Latest Anthropic models with extended thinking
+- **Intelligent Context Management**: Automatic summarization and token optimization
+- **Multi-Model Support**: Claude 4 Opus, Sonnet, and Haiku models
+- **Computer Use**: Automated screen capture and interaction capabilities
+
+### 💼 Enterprise-Ready Features
+- **Secure API Key Management**: Military-grade encryption (AES-256-GCM)
+- **Session Management**: Persistent conversations with import/export
+- **Comprehensive Monitoring**: Real-time performance and usage analytics
+- **Error Recovery**: Robust error handling with automatic recovery
+
+## Configuration
+
+### Environment Variables (.env)
+```bash
+# Encryption secret (auto-generated on first run if not set)
+ENCRYPTION_SECRET=<auto-generated-or-your-custom-secret>
+
+# Optional - users can add via UI instead
+ANTHROPIC_API_KEY=sk-ant-api-key
+
+# Environment
+APP_ENV=development
+```
+
+**Note**: The encryption secret is now automatically generated on first server start if not provided.
+
+### Configuration Files
+- `config/base.yaml` - Base configuration
+- `config/environments/*.yaml` - Environment overrides
+- `config/local.yaml` - Local overrides (git ignored)
+
+## API Key Management
+
+Users can add their Anthropic API keys through the UI:
+1. Open Settings (gear icon)
+2. Navigate to API Keys
+3. Enter your key (must start with `sk-ant-`)
+4. Save and test the connection
+5. Click "Continue to Chat" when validated
+
+Keys are:
+- Encrypted with AES-256-GCM
+- Stored securely in the backend database
+- Never exposed in logs or responses
+- Tied to user sessions
+
+## Extended Thinking
+
+Configure complex reasoning in `config/base.yaml`:
+```yaml
+ai:
+  extended_thinking:
+    enabled: true
+    budget_tokens: 5000  # 1024-16000
+    show_thinking: true
+    auto_detect: true
+```
+
+## Security
+
+- **API Keys**: Encrypted storage with session isolation
+- **CORS**: Configured for development/production
+- **Rate Limiting**: 60 requests/minute per IP
+- **Input Validation**: Comprehensive request validation
+- **Audit Logging**: All API key operations logged
+
+## Documentation
+
+See `/Docs/New/` for detailed documentation:
+- Architecture overview
+- Feature implementations
+- API documentation
+- Configuration guide
+
+## License & Attribution
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+
+**Copyright (c) 2025 Arian Rudd**
+
+### Attribution Requirements
+
+The author kindly requests that any derivative works or implementations:
+
+1. **Keep the CODAI branding** or mention "Based on CODAI" in your derivative works
+2. **Include attribution**: "Originally created by Arian Rudd"
+3. **Link back** to this repository when practical
+
+### Branding Guidelines
+
+The CODAI logo and visual identity are proprietary. Please see [BRANDING.md](BRANDING.md) for usage guidelines.
+
+### GPL License Requirements
+
+Under GPL-3.0, you must:
+- Provide source code when distributing the software
+- License any derivative works under GPL-3.0
+- Include copyright and license notices
+- Document any changes made to the original code
+
+### Disclaimer
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+## Acknowledgments
+
+Created and maintained by **[Arian Rudd](https://x.com/AriRudd)**
+
+CODAI represents a significant investment of time and effort. If you find it useful, please consider:
+- ⭐ Starring this repository
+- 🔗 Linking back to this project
+- 📣 Sharing your experience with CODAI
+- 🌐 Visiting [codai.ai](https://codai.ai) for more information
+
+## Contact
+
+- **Website**: [codai.ai](https://codai.ai)
+- **X (Twitter)**: [@AriRudd](https://x.com/AriRudd)
+- **GitHub**: [thecodai/Codai](https://github.com/thecodai/Codai)
+
+For questions about commercial use or custom implementations, please visit [codai.ai](https://codai.ai) or reach out on X.

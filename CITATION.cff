@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Rudd"
+    given-names: "Arian"
+    orcid: "https://x.com/AriRudd"
+title: "CODAI - Evolved Intelligence"
+version: 0.1.0
+date-released: 2025-01-01
+url: "https://codai.ai"
+repository-code: "https://github.com/thecodai/Codai"
+license: GPL-3.0-or-later
+keywords:
+  - AI
+  - evolved intelligence
+  - no-code
+  - app creation
+  - Claude
+  - FastAPI
+  - Next.js
+abstract: "CODAI - Evolved Intelligence. Turn ideas into production-ready apps and solutions with zero code required. Simply describe what you want to build in natural language, and CODAI creates complete applications for you."

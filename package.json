@@ -1,0 +1,87 @@
+{
+  "name": "CODAI",
+  "productName": "CODAI",
+  "version": "1.0.0",
+  "description": "CODAI - Evolved Intelligence",
+  "author": "Arian Rudd",
+  "license": "GPL-3.0-or-later",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "cross-env NODE_ENV=development electron .",
+    "build-frontend": "cd frontend && cross-env ELECTRON_BUILD=true npm run build",
+    "build-python": "node electron/build-python.js",
+    "build": "npm run build-frontend && npm run build-python",
+    "dist": "npm run build && electron-builder",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:linux": "npm run build && electron-builder --linux",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron": "^27.3.0",
+    "electron-builder": "^24.12.0"
+  },
+  "dependencies": {},
+  "build": {
+    "appId": "ai.codai.desktop",
+    "productName": "CODAI",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build-resources"
+    },
+    "files": [
+      "electron/**/*",
+      "!electron/build-python.js"
+    ],
+    "extraResources": [
+      {
+        "from": "frontend/out",
+        "to": "frontend",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "python-dist",
+        "to": "python",
+        "filter": ["**/*"]
+      },
+      {
+        "from": ".",
+        "to": "backend",
+        "filter": [
+          "run_server.py",
+          "server/**/*",
+          "core/**/*",
+          "tools/**/*",
+          "config/**/*",
+          "!**/__pycache__",
+          "!**/*.pyc"
+        ]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "build-resources/icon.icns",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build-resources/entitlements.mac.plist",
+      "entitlementsInherit": "build-resources/entitlements.mac.plist"
+    },
+    "win": {
+      "target": ["nsis", "portable"],
+      "icon": "build-resources/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "Development",
+      "icon": "build-resources/icons"
+    }
+  }
+}

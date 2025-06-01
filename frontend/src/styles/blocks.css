@@ -1,0 +1,328 @@
+/* Block content styling */
+
+/* Response JSON container */
+.response-json {
+  font-family: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* Version information */
+.version {
+  color: #6B7280;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  font-family: monospace;
+}
+
+/* Base block styling */
+.block {
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  background-color: rgba(243, 244, 246, 0.5);
+}
+
+/* Base block-tag styling - ADDED FOR CONSISTENCY */
+.block-tag {
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  background-color: rgba(243, 244, 246, 0.5);
+}
+
+/* Text block - legacy class */
+.block-text {
+  background-color: rgba(229, 231, 235, 0.3);
+  padding: 0.75rem;
+  line-height: 1.5;
+}
+
+/* Text block - NEW TAG-BASED CLASS THAT MATCHES RENDERER OUTPUT */
+.block-tag-text {
+  display: block !important; /* Critical for layout */
+  background-color: rgba(16, 185, 129, 0.05); /* Emerald/green - very light */
+  border-left: 3px solid rgba(16, 185, 129, 0.4); /* Emerald/green */
+  padding: 0.75rem;
+  line-height: 1.5;
+  /* Using normal white-space for better control of spacing */
+  white-space: normal;
+  border-radius: 0.375rem;
+  margin: 0.5rem 0;
+}
+
+/* Make sure text block has proper paragraph spacing */
+.block-tag-text p {
+  margin-bottom: 1rem;
+}
+
+/* Remove bottom margin from last paragraph to prevent extra space */
+.block-tag-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Headings within text blocks */
+.block-tag-text h1,
+.block-tag-text h2,
+.block-tag-text h3,
+.block-tag-text h4,
+.block-tag-text h5,
+.block-tag-text h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.block-tag-text h1 { font-size: 1.8rem; }
+.block-tag-text h2 { font-size: 1.5rem; }
+.block-tag-text h3 { font-size: 1.25rem; }
+.block-tag-text h4 { font-size: 1.1rem; }
+
+/* Lists within text blocks */
+.block-tag-text ul, 
+.block-tag-text ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.block-tag-text li {
+  margin-bottom: 0.5rem;
+}
+
+/* Links within text blocks */
+.block-tag-text a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.block-tag-text a:hover {
+  text-decoration: none;
+}
+
+/* Inline code within text blocks */
+.block-tag-text code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* Blockquotes within text blocks */
+.block-tag-text blockquote {
+  border-left: 4px solid #e5e7eb;
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 1rem;
+  color: #4b5563;
+}
+
+/* Tables within text blocks */
+.block-tag-text table {
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.block-tag-text th,
+.block-tag-text td {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.block-tag-text th {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+}
+
+/* Code block - legacy class */
+.block-code {
+  background-color: #1E293B;
+  color: #E2E8F0;
+  padding: 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+/* Code block - NEW TAG-BASED CLASS */
+.block-tag-code {
+  background-color: #1E293B;
+  color: #E2E8F0;
+  padding: 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+/* Add any other block types you want to style */
+
+/* Table blocks - specific styling for dedicated table blocks */
+.block-tag-table {
+  background-color: rgba(30, 64, 175, 0.05); /* Indigo - very light */
+  border-left: 3px solid rgba(30, 64, 175, 0.4); /* Indigo */
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.block-tag-table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.block-tag-table th,
+.block-tag-table td {
+  padding: 6px 12px;
+  text-align: left;
+  border: 1px solid rgba(30, 64, 175, 0.2);
+}
+
+.block-tag-table th {
+  background-color: rgba(30, 64, 175, 0.1);
+  font-weight: 600;
+}
+
+/* Tool result output */
+.tool-result-output {
+  background-color: rgba(17, 24, 39, 0.05); /* Dark gray - very light */
+  border-left: 3px solid rgba(17, 24, 39, 0.4); /* Dark gray */
+  padding: 8px;
+  margin: 6px 0;
+  border-radius: 4px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  font-size: 13px; 
+  line-height: 1.4;
+  overflow-x: auto;
+  display: block;
+  max-width: 100%;
+  tab-size: 2;
+}
+
+/* Type indicator (shown on hover) */
+.block-tag::before {
+  content: attr(data-block-type);
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 2px 5px;
+  border-bottom-left-radius: 4px;
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.block-tag:hover::before {
+  opacity: 1;
+}
+
+/* Action blocks styling - matches exact HTML structure */
+.action-block {
+  display: block;
+  width: 100%;
+  margin: 0.75rem 0;
+}
+
+.action-container {
+  display: block;
+  border: 1px solid #dbeafe; /* Blue border */
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #eff6ff; /* Light blue background */
+  box-shadow: none !important; /* Explicitly remove any shadow with !important */
+}
+
+.action-header {
+  padding: 0.5rem 0.75rem;
+  background-color: #eff6ff; /* Match container background */
+  border-bottom: 1px solid #dbeafe; /* Match container border */
+  white-space: nowrap; /* Prevent line breaks */
+  font-size: 0.875rem;
+}
+
+/* Force these to be inline with !important */
+.action-icon, .action-title {
+  display: inline !important;
+  vertical-align: middle !important;
+}
+
+.action-icon {
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+.action-title {
+  font-weight: 600;
+  color: rgba(55, 65, 81, 0.8); /* gray-700 at 80% */
+}
+
+.action-content {
+  padding: 0.75rem;
+  background-color: #eff6ff; /* Match container background */
+}
+
+.action-text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  color: rgba(55, 65, 81, 0.8); /* gray-700 at 80% */
+}
+
+/* Tool result image styling */
+.tool-result-image-wrapper {
+  display: block;
+  margin: 0 0 1rem 0;
+  order: -1; /* Make sure image appears at the top */
+}
+
+.tool-result-image-container {
+  display: block;
+  margin: 0.75rem 0;
+  text-align: center;
+  background-color: rgba(243, 244, 246, 0.5);
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+.tool-result-image {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 0.25rem;
+  object-fit: contain;
+}
+
+.tool-result-error {
+  display: block;
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  background-color: rgba(239, 68, 68, 0.1);
+  border-left: 3px solid rgba(239, 68, 68, 0.4);
+  border-radius: 0.375rem;
+  color: rgb(185, 28, 28);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+}
+
+/* JSON action fallback */
+.json-action {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  padding: 0.75rem;
+  background-color: rgba(243, 244, 246, 0.5);
+  border-radius: 0.375rem;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}

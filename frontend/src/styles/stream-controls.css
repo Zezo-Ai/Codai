@@ -1,0 +1,25 @@
+/**
+ * stream-controls.css
+ * CSS for stream controls component
+ */
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.stream-controls-manual-indicator {
+  animation: pulse 2s infinite;
+}
+
+/* Override any other status indicators */
+.stream-controls-button .status-indicator {
+  display: none !important;
+}

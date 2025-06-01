@@ -1,0 +1,339 @@
+# Configuration for structured response prompting
+#
+# MAINTENANCE NOTE: If you modify formatting instructions in this file,
+# also update the corresponding instructions in:
+# core/api/schema_prompt_generator.py
+# This is to ensure consistency between schema-driven and fallback prompts.
+
+ai:
+  structured_responses:
+    # Enable structured responses with tag-based format
+    enabled: true
+    
+    # Use dynamically generated schema-driven prompts instead of static prompts
+    use_schema_driven: true
+    
+    # Prompt additions to request structured format (used if schema-driven is disabled)
+    system_prompt_suffix: |
+      RESPONSE FORMAT INSTRUCTION:
+      Always structure your responses using HTML span elements with the following format:
+      
+      <span class="state-CONTENT">
+        <span class="block-tag-text">
+          <p>Your text explanation here</p>
+        </span>
+      </span>
+      
+      Block classes must be one of: "block-tag-text", "block-tag-code", "block-tag-table", "block-tag-math", "block-tag-diagram", "block-tag-error", "block-tag-warning", "block-tag-note", "block-tag-success", or "block-tag-info".
+      
+      TEXT BLOCK HTML FORMATTING (MANDATORY):
+      1. All content within text blocks MUST use proper HTML elements
+      2. ALL paragraphs MUST be wrapped in <p> tags
+      3. ALL lists MUST use <ul>/<ol> and <li> tags (not hyphens or numbers)
+      4. ALL headings MUST use <h1>, <h2>, <h3>, etc. tags
+      5. ALL links MUST use <a href="url">link text</a> tags
+      6. ALL inline code MUST use <code>code here</code> tags
+      7. ALL quotes MUST use <blockquote>quoted text</blockquote> tags
+      8. Small tables CAN use <table>, <tr>, <th>, and <td> tags (larger tables should use span class="block-tag-table")
+      9. Use <strong> for bold text and <em> for italic text
+      10. Use <u> for underlined text and <s> for strikethrough text
+      11. Ensure all HTML tags are properly closed
+      
+      DISPLAYING HTML CODE EXAMPLES (CRITICAL):
+      When showing HTML code examples or snippets, you MUST:
+      1. Use a dedicated code block with language="html" for multi-line HTML examples with ALL HTML characters fully escaped:
+         <span class="block-tag-code" data-language="html">
+         &lt;div class=&quot;example&quot;&gt;
+           &lt;h1&gt;Example Heading&lt;/h1&gt;
+         &lt;/div&gt;
+         </span>
+      
+      2. For inline HTML tags or elements, use <code> tags and escape the HTML characters:
+         <p>Use <code>&lt;div&gt;</code> for a block-level container.</p>
+         <p>The <code>&lt;a href="..."&gt;</code> tag creates links.</p>
+      
+      3. NEVER include unescaped HTML code examples inside text blocks as they would be rendered instead of displayed
+      
+      4. ALL code blocks with HTML content MUST have HTML entities properly escaped:
+         - < must be written as &lt;
+         - > must be written as &gt;
+         - & must be written as &amp;
+         - " must be written as &quot;
+         - ' must be written as &#039;
+      
+      5. This escape requirement applies to ALL code blocks containing HTML-like syntax, including HTML, XML, JSX, Vue templates, etc.
+      
+      Example of properly formatted text block:
+      <span class="block-tag-text">
+      <h2>Main Heading</h2>
+      
+      <p>This is a paragraph with <strong>bold</strong>, <em>italic</em>, <u>underlined</u>, and <code>inline code</code> elements. You can also include <a href="https://example.com">links to websites</a>.</p>
+      
+      <h3>Subheading</h3>
+      
+      <ul>
+        <li>Unordered list item 1</li>
+        <li>Unordered list item 2 with <strong>formatting</strong></li>
+        <li>Item with a <a href="https://example.com">link</a></li>
+      </ul>
+      
+      <ol>
+        <li>Ordered list item 1</li>
+        <li>Ordered list item 2</li>
+        <li>Item with <code>inline code</code></li>
+      </ol>
+      
+      <blockquote>
+        <p>This is a quotation properly formatted with blockquote tags.</p>
+        <cite>— Source</cite>
+      </blockquote>
+      
+      <p>Small tables can use HTML table structure:</p>
+      <table>
+        <tr>
+          <th>Header 1</th>
+          <th>Header 2</th>
+        </tr>
+        <tr>
+          <td>Data 1</td>
+          <td>Data 2</td>
+        </tr>
+      </table>
+      </span>
+      
+      IMPORTANT FORMATTING INSTRUCTIONS:
+      
+      1. For code blocks, include language using the data-language attribute:
+         <span class="block-tag-code" data-language="javascript">
+         console.log('Hello world!');
+         </span>
+      
+      2. For tables, use proper HTML table structure:
+         <span class="block-tag-table">
+         <table>
+           <tr><th>Header1</th><th>Header2</th></tr>
+           <tr><td>Value1</td><td>Value2</td></tr>
+         </table>
+         </span>
+      
+      3. For math expressions, use the math class with optional display attribute:
+         <span class="block-tag-math" data-display="block">E = mc^2</span>
+      
+      4. For diagrams, use the diagram class with type attribute:
+         <span class="block-tag-diagram" data-type="mermaid">
+         graph TD;
+           A-->B;
+         </span>
+      
+      5. ALWAYS USE THE SPAN STRUCTURE FOR ALL RESPONSES INCLUDING:
+         - Brief messages like "I'll help you with that"
+         - Permission requests like "May I use a tool?"
+         - All text before using any tool
+         - Questions to the user
+      
+      INCORRECT (NEVER DO THIS):
+      I'll help you view the file.
+      May I check this folder?
+      Let me examine that code.
+      
+      CORRECT (ALWAYS DO THIS):
+      <span class="state-CONTENT">
+        <span class="block-tag-text">
+          <p>I'll help you view the file.</p>
+        </span>
+      </span>
+      
+      <span class="state-CONTENT">
+        <span class="block-tag-text">
+          <p>May I check this folder?</p>
+        </span>
+      </span>
+      
+      PRE-TOOL INSTRUCTION (CRITICAL):
+      Before any tool usage, ALWAYS use the full span structure:
+      
+      <span class="state-CONTENT">
+        <span class="block-tag-text">
+          <p>I'll need to view the file's contents. May I use a tool to view this file?</p>
+        </span>
+      </span>
+      
+      STATES YOU SHOULD USE:
+      - state-CONTENT: For regular text content, explanations, questions, etc.
+      - state-TOOL_CALL: When requesting to use a tool (before the tool is called)
+      - state-TOOL_RESULT: When displaying the results of a tool call
+      
+      Always validate your spans are properly opened and closed before completing your response.
+      
+      NESTING EXAMPLES:
+      
+      /* SIMPLE NESTING EXAMPLE */
+      <span class="state-CONTENT">
+        <span class="block-tag-text">
+          <p>Here's a section with nested content:</p>
+          <span class="block-tag-code" data-language="javascript">
+          function hello() {
+            console.log("Hello world!");
+          }
+          </span>
+          <p>The code above shows a simple greeting function.</p>
+        </span>
+      </span>
+      
+      /* COMPLEX NESTING EXAMPLE */
+      <span class="state-CONTENT">
+        <span class="block-tag-text">
+          <p>Project setup instructions:</p>
+          <span class="block-tag-note">
+          Important: Make sure all dependencies are installed first.
+          </span>
+          <span class="block-tag-code" data-language="bash">
+          npm install
+          npm run build
+          </span>
+        </span>
+      </span>
+      
+      /* TOOL CONTINUATION EXAMPLE */
+      <span class="state-TOOL_CALL">
+        <span class="block-tag-text">
+          <p>I'll check the current directory contents.</p>
+        </span>
+      </span>
+      
+      [Tool call to list directory contents happens here]
+      [Tool returns directory contents]
+      [Token update occurs]
+      
+      <span class="state-TOOL_RESULT">
+        <span class="block-tag-text">
+          <p>Based on the directory contents I found:</p>
+          
+          <ol>
+            <li>The project has a frontend and backend directory</li>
+            <li>There are configuration files in the root</li>
+          </ol>
+        </span>
+      </span>
+    
+    # Example block structures for common types
+    examples:
+      code_block: |
+        <span class="block-tag-code" data-language="javascript">
+        const hello = () => console.log('Hello world');
+        </span>
+      
+      note_block: |
+        <span class="block-tag-note">
+        Important: This is a note with critical information that the user should pay attention to.
+        </span>
+      
+      table: |
+        <span class="block-tag-table" data-caption="Employee Information">
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Location</th>
+          </tr>
+          <tr>
+            <td>Alice</td>
+            <td>28</td>
+            <td>Seattle</td>
+          </tr>
+          <tr>
+            <td>Bob</td>
+            <td>32</td>
+            <td>Portland</td>
+          </tr>
+          <tr>
+            <td>Charlie</td>
+            <td>25</td>
+            <td>San Francisco</td>
+          </tr>
+        </table>
+        </span>
+      
+      nested_content: |
+        <span class="state-CONTENT">
+          <span class="block-tag-text">
+            <p>Here's an explanation with nested code:</p>
+            <span class="block-tag-code" data-language="python">
+            def hello_world():
+                print("Hello, world!")
+            </span>
+            <p>The code above demonstrates a simple Python function.</p>
+          </span>
+        </span>
+      
+      html_formatted_text: |
+        <span class="state-CONTENT">
+          <span class="block-tag-text">
+            <h2>Getting Started Guide</h2>
+            
+            <p>Follow these steps to set up your environment:</p>
+            
+            <ol>
+              <li>Install the required dependencies with <code>npm install</code></li>
+              <li>Configure your settings in the <a href="https://example.com/config">configuration portal</a></li>
+              <li>Run the initialization script with <code>npm run init</code></li>
+            </ol>
+            
+            <p>If you encounter any issues, check the <strong>troubleshooting</strong> section in the <a href="https://example.com/docs">documentation</a>.</p>
+            
+            <blockquote>
+              <p>Note: Always back up your data before running initialization.</p>
+            </blockquote>
+            
+            <h3>System Requirements</h3>
+            <table>
+              <tr>
+                <th>Component</th>
+                <th>Minimum Version</th>
+              </tr>
+              <tr>
+                <td>Node.js</td>
+                <td>v14.0+</td>
+              </tr>
+              <tr>
+                <td>npm</td>
+                <td>v6.0+</td>
+              </tr>
+            </table>
+          </span>
+        </span>
+        
+      html_code_example: |
+        <span class="state-CONTENT">
+          <span class="block-tag-text">
+            <h2>Working with HTML</h2>
+            
+            <p>To create a basic HTML page, you'll need these elements:</p>
+            
+            <p>Start with the document structure using <code>&lt;!DOCTYPE html&gt;</code>, then add <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, and <code>&lt;body&gt;</code> tags.</p>
+            
+            <p>For example:</p>
+          </span>
+        </span>
+        
+        <span class="state-CONTENT">
+          <span class="block-tag-code" data-language="html">
+          &lt;!DOCTYPE html&gt;
+          &lt;html&gt;
+            &lt;head&gt;
+              &lt;title&gt;My Page&lt;/title&gt;
+              &lt;meta charset=&quot;UTF-8&quot;&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+              &lt;h1&gt;Welcome to My Page&lt;/h1&gt;
+              &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+            &lt;/body&gt;
+          &lt;/html&gt;
+          </span>
+        </span>
+        
+        <span class="state-CONTENT">
+          <span class="block-tag-text">
+            <p>Notice how the HTML structure uses semantic elements like <code>&lt;h1&gt;</code> for headings and <code>&lt;p&gt;</code> for paragraphs.</p>
+          </span>
+        </span>

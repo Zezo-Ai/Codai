@@ -1,0 +1,91 @@
+{
+  "name": "codai-frontend",
+  "version": "0.1.0",
+  "description": "CODAI Frontend - Evolved Intelligence that creates complete apps and solutions",
+  "author": "Arian Rudd",
+  "license": "GPL-3.0-or-later",
+  "homepage": "https://codai.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thecodai/Codai"
+  },
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 8001",
+    "dev:turbo": "next dev --turbopack -p 8001",
+    "build": "next build",
+    "export": "next export",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
+    "@radix-ui/react-checkbox": "^1.0.4",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-scroll-area": "^1.2.0",
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.2",
+    "@radix-ui/react-toast": "^1.1.5",
+    "@types/lodash": "^4.17.17",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^11.15.0",
+    "lodash": "^4.17.21",
+    "lucide-react": "^0.454.0",
+    "next": "^15.1.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.53.1",
+    "react-markdown": "^8.0.0",
+    "react-syntax-highlighter": "^15.6.1",
+    "recharts": "^2.15.0",
+    "remark-breaks": "^3.0.0",
+    "remark-gfm": "^3.0.0",
+    "tailwind-merge": "^2.5.4",
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8",
+    "zustand": "^5.0.2"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.7.40",
+    "@swc/jest": "^0.2.36",
+    "@tailwindcss/typography": "^0.5.10",
+    "@testing-library/dom": "^9.3.4",
+    "@testing-library/jest-dom": "^6.1.6",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  },
+  "overrides": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@testing-library/react": {
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0"
+    },
+    "@floating-ui/react-dom": {
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0"
+    },
+    "@radix-ui/react-primitive": {
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0"
+    }
+  }
+}

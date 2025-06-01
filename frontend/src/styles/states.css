@@ -1,0 +1,1788 @@
+/**
+ * states.css
+ * Styling for state rendering in chat UI components
+ */
+
+/* Container for stream state content */
+.stream-states-container {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden; /* Hide horizontal overflow at this level */
+}
+
+/* Global rule to ensure all state content respects container width */
+.state-html-container *,
+.stream-states-container * {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
+
+/* Special handling for overflow content */
+.state-html-container pre,
+.stream-states-container pre,
+.state-html-container code,
+.stream-states-container code,
+.state-html-container .file-content-code,
+.stream-states-container .file-content-code,
+.state-html-container table,
+.stream-states-container table {
+  overflow-x: auto !important; /* Force horizontal scrolling */
+  white-space: pre;
+  display: block;
+  width: 100%;
+}
+
+/* Base styles for all state classes */
+[class^="state-"] {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
+
+/* Make sure spans in states are properly displayed */
+.state-html-container [class^="state-"] span,
+.stream-states-container [class^="state-"] span {
+  display: block;
+}
+
+/* Exception for spans inside content elements that should be inline */
+.state-html-container code span,
+.stream-states-container code span,
+.state-html-container strong span,
+.stream-states-container strong span,
+.state-html-container em span,
+.stream-states-container em span,
+.state-html-container .inline-math span,
+.stream-states-container .inline-math span,
+.state-html-container .math-var span,
+.stream-states-container .math-var span,
+.state-html-container .math-op span,
+.stream-states-container .math-op span {
+  display: inline;
+}
+
+/***********************
+ * STATE: CONTENT
+ ***********************/
+
+.state-CONTENT {
+  background-color: transparent;
+  border-left: none;
+  line-height: normal;
+}
+
+/* Ensure nested elements are properly displayed */
+.state-CONTENT .block-tag-text {
+  display: block;
+  width: 100%;
+}
+
+/* Heading styles */
+.state-CONTENT .block-tag-text h1,
+.state-CONTENT .block-tag-text h2,
+.state-CONTENT .block-tag-text h3,
+.state-CONTENT .block-tag-text h4,
+.state-CONTENT .block-tag-text h5,
+.state-CONTENT .block-tag-text h6 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.state-CONTENT .block-tag-text h1 { font-size: 1.8rem; }
+.state-CONTENT .block-tag-text h2 { font-size: 1.5rem; }
+.state-CONTENT .block-tag-text h3 { font-size: 1.25rem; }
+.state-CONTENT .block-tag-text h4 { font-size: 1.1rem; }
+
+/* List styles */
+.state-CONTENT .block-tag-text ol,
+.state-CONTENT .block-tag-text ul {
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+/* Nested list styles */
+.state-CONTENT .block-tag-text li > ul,
+.state-CONTENT .block-tag-text li > ol {
+  margin: 0.5rem 0;
+}
+
+/* List item styles */
+.state-CONTENT .block-tag-text li {
+  margin-bottom: 0.5rem;
+}
+
+/* Definition list styles */
+.state-CONTENT .block-tag-text dl {
+  margin: 0.75rem 0;
+}
+
+/* Definition terms */
+.state-CONTENT .block-tag-text dt {
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+
+/* Definition descriptions */
+.state-CONTENT .block-tag-text dd {
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Inline code */
+.state-CONTENT .block-tag-text code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* Blockquote styling */
+.state-CONTENT .block-tag-text blockquote {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border-left: 4px solid #e5e7eb; /* gray-200 */
+  background-color: rgba(243, 244, 246, 0.5); /* gray-100 at 50% */
+  font-style: italic;
+}
+
+/* Citation in blockquotes */
+.state-CONTENT .block-tag-text blockquote cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-style: normal;
+  text-align: right;
+}
+
+/* Underlined text */
+.state-CONTENT .block-tag-text u {
+  text-decoration: underline;
+}
+
+/* Strikethrough text */
+.state-CONTENT .block-tag-text s {
+  text-decoration: line-through;
+}
+
+/* Links */
+.state-CONTENT .block-tag-text a {
+  color: #3b82f6; /* blue-500 */
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.state-CONTENT .block-tag-text a:hover {
+  color: #1d4ed8; /* blue-700 */
+}
+
+/* Strong/bold text */
+.state-CONTENT .block-tag-text strong {
+  font-weight: 600;
+}
+
+/* Specialized blocks within content state */
+.state-CONTENT .block-tag-code,
+.state-CONTENT .block-tag-note,
+.state-CONTENT .block-tag-diagram,
+.state-CONTENT .block-tag-warning,
+.state-CONTENT .block-tag-info,
+.state-CONTENT .block-tag-table,
+.state-CONTENT .block-tag-rich_text,
+.state-CONTENT .block-tag-math,
+.state-CONTENT .block-tag-error,
+.state-CONTENT .block-tag-success,
+.state-CONTENT .block-tag-important,
+.state-CONTENT .block-tag-quote,
+.state-CONTENT .block-tag-example,
+.state-CONTENT .block-tag-terminal {
+  display: block;
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Code blocks */
+.state-CONTENT .block-tag-code {
+  background-color: #F1F5F9; /* slate-100 - light gray */
+  color: #1E293B; /* slate-800 - dark text */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  border: 1px solid rgba(203, 213, 225, 0.8); /* slate-300 at 80% */
+  border-radius: 0.375rem;
+}
+
+/* Note blocks */
+.state-CONTENT .block-tag-note {
+  background-color: rgba(245, 158, 11, 0.1); /* amber-500 at 10% */
+  border-left: 3px solid rgba(245, 158, 11, 0.4); /* amber-500 at 40% */
+  font-style: italic;
+}
+
+/* Warning blocks */
+.state-CONTENT .block-tag-warning {
+  background-color: rgba(239, 68, 68, 0.1); /* red-500 at 10% */
+  border-left: 3px solid rgba(239, 68, 68, 0.4); /* red-500 at 40% */
+  font-weight: 500;
+}
+
+/* Info blocks */
+.state-CONTENT .block-tag-info {
+  background-color: rgba(14, 165, 233, 0.1); /* sky-500 at 10% */
+  border-left: 3px solid rgba(14, 165, 233, 0.4); /* sky-500 at 40% */
+}
+
+/* Info block headings */
+.state-CONTENT .block-tag-info h1,
+.state-CONTENT .block-tag-info h2,
+.state-CONTENT .block-tag-info h3,
+.state-CONTENT .block-tag-info h4,
+.state-CONTENT .block-tag-info h5,
+.state-CONTENT .block-tag-info h6 {
+  color: rgb(3, 105, 161); /* sky-700 */
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Info block paragraphs */
+.state-CONTENT .block-tag-info p {
+  margin-bottom: 0.75rem;
+}
+
+/* Info block lists */
+.state-CONTENT .block-tag-info ul,
+.state-CONTENT .block-tag-info ol {
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+/* Info block list items */
+.state-CONTENT .block-tag-info li {
+  margin-bottom: 0.5rem;
+}
+
+/* Info block strong text */
+.state-CONTENT .block-tag-info strong {
+  color: rgb(3, 105, 161); /* sky-700 */
+  font-weight: 600;
+}
+
+/* Error blocks */
+.state-CONTENT .block-tag-error {
+  background-color: rgba(220, 38, 38, 0.1); /* red-600 at 10% */
+  border-left: 3px solid rgba(220, 38, 38, 0.4); /* red-600 at 40% */
+  color: rgb(185, 28, 28); /* red-700 */
+}
+
+/* Success blocks */
+.state-CONTENT .block-tag-success {
+  background-color: rgba(22, 163, 74, 0.1); /* green-600 at 10% */
+  border-left: 3px solid rgba(22, 163, 74, 0.4); /* green-600 at 40% */
+  color: rgb(21, 128, 61); /* green-700 */
+}
+
+/* Important blocks */
+.state-CONTENT .block-tag-important {
+  background-color: rgba(124, 58, 237, 0.1); /* violet-600 at 10% */
+  border-left: 3px solid rgba(124, 58, 237, 0.4); /* violet-600 at 40% */
+  font-weight: 500;
+}
+
+/* Quote blocks */
+.state-CONTENT .block-tag-quote {
+  background-color: rgba(75, 85, 99, 0.1); /* gray-600 at 10% */
+  border-left: 3px solid rgba(75, 85, 99, 0.4); /* gray-600 at 40% */
+  font-style: italic;
+}
+
+/* Example blocks */
+.state-CONTENT .block-tag-example {
+  background-color: rgba(217, 119, 6, 0.1); /* amber-600 at 10% */
+  border-left: 3px solid rgba(217, 119, 6, 0.4); /* amber-600 at 40% */
+}
+
+/* Terminal blocks */
+.state-CONTENT .block-tag-terminal {
+  background-color: #000000;
+  color: #f0f0f0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  overflow-x: auto;
+}
+
+/* Rich text blocks */
+.state-CONTENT .block-tag-rich_text {
+  background-color: rgba(79, 70, 229, 0.1); /* indigo-600 at 10% */
+  border-left: 3px solid rgba(79, 70, 229, 0.4); /* indigo-600 at 40% */
+}
+
+/* Diagram blocks */
+.state-CONTENT .block-tag-diagram {
+  background-color: rgba(59, 130, 246, 0.05); /* blue-500 at 5% */
+  border: 1px solid rgba(59, 130, 246, 0.2); /* blue-500 at 20% */
+  border-radius: 0.375rem;
+  padding: 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  text-align: left;
+  position: relative;
+}
+
+/* Add data-type badge */
+.state-CONTENT .block-tag-diagram[data-type]:before {
+  content: attr(data-type);
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.7rem;
+  background-color: rgba(59, 130, 246, 0.2);
+  color: rgba(30, 64, 175);
+  padding: 0.2rem 0.5rem;
+  border-bottom-left-radius: 0.25rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Table blocks - Plain text with spaces formatting (as seen in the stream data) */
+.state-CONTENT .block-tag-table {
+  background-color: rgba(5, 150, 105, 0.05); /* emerald-600 at 5% */
+  border: 1px solid rgba(5, 150, 105, 0.2); /* emerald-600 at 20% */
+  overflow-x: auto;
+  padding: 0.75rem; 
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  display: block;
+  white-space: pre !important; /* Critical: preserves spaces and tabs - overrides any other settings */
+  tab-size: 4;
+  max-width: 100%;
+}
+
+/* Proper table styling only for when table elements exist */
+.state-CONTENT .block-tag-table table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  padding: 0; /* Remove padding when it's a real table */
+  font-family: inherit;
+  white-space: normal;
+}
+
+/* Table styling */
+.state-CONTENT .block-tag-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0; /* Remove margin for tables */
+}
+
+/* Style both direct and nested table cells */
+.state-CONTENT .block-tag-table th,
+.state-CONTENT .block-tag-table td,
+.state-CONTENT .block-tag-table > tr > th,
+.state-CONTENT .block-tag-table > tr > td {
+  border: 1px solid rgba(209, 213, 219, 0.5); /* gray-300 at 50% */
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.state-CONTENT .block-tag-table th,
+.state-CONTENT .block-tag-table > tr > th {
+  background-color: rgba(5, 150, 105, 0.1); /* emerald-600 at 10% */
+  font-weight: 600;
+}
+
+/* Inline tables within block-tag-text */
+.state-CONTENT .block-tag-text table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.state-CONTENT .block-tag-text table-wrapper {
+  overflow-x: auto;
+  display: block;
+}
+
+.state-CONTENT .block-tag-text th,
+.state-CONTENT .block-tag-text td {
+  border: 1px solid rgba(209, 213, 219, 0.8); /* gray-300 */
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.state-CONTENT .block-tag-text th {
+  background-color: rgba(243, 244, 246, 0.8); /* gray-100 */
+  font-weight: 600;
+}
+
+/* Data attribute styling */
+.state-CONTENT [data-language],
+.state-CONTENT [data-type] {
+  position: relative;
+}
+
+/* Language indicator for code blocks */
+.state-CONTENT [data-language]::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.4rem;
+  border-bottom-left-radius: 0.25rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Type indicator for diagram blocks */
+.state-CONTENT [data-type]::before {
+  content: attr(data-type);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(59, 130, 246, 0.3);
+  color: white;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.4rem;
+  border-bottom-left-radius: 0.25rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Math blocks */
+.state-CONTENT .block-tag-math {
+  background-color: rgba(79, 70, 229, 0.05); /* indigo-600 at 5% */
+  border-left: 3px solid rgba(79, 70, 229, 0.4); /* indigo-600 at 40% */
+  font-family: "Georgia", serif; /* Better for math display */
+  text-align: center;
+}
+
+/* Inline math */
+.state-CONTENT .inline-math {
+  font-family: "Georgia", serif;
+  font-style: italic;
+  padding: 0 0.2rem;
+}
+
+/* Math formula elements */
+.state-CONTENT .math-formula {
+  display: block;
+  padding: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+/* Math variables */
+.state-CONTENT .math-var {
+  font-style: italic;
+}
+
+/* Math operators */
+.state-CONTENT .math-op {
+  padding: 0 0.2rem;
+}
+
+/* Math fractions */
+.state-CONTENT .math-frac {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.state-CONTENT .math-num {
+  display: block;
+  border-bottom: 1px solid;
+  padding: 0 0.2rem;
+}
+
+.state-CONTENT .math-denom {
+  display: block;
+  padding: 0 0.2rem;
+}
+
+/***********************
+ * STATE: TOOL_CALL
+ ***********************/
+
+.state-TOOL_CALL {
+  display: block;
+  background-color: transparent;
+  border-left: none;
+  line-height: normal;
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+/* Block text inside tool calls */
+.state-TOOL_CALL .block-tag-text {
+  padding: 0.75rem;
+  line-height: 1.5;
+  background-color: rgba(59, 130, 246, 0.05); /* Light blue with 5% opacity */
+  border-left: 3px solid rgba(59, 130, 246, 0.4); /* Blue */
+  border-radius: 0.375rem;
+  margin: 0 0 8px 0;
+}
+
+/* Paragraphs inside tool calls */
+.state-TOOL_CALL .block-tag-text p {
+  margin: 0;
+}
+
+/***********************
+ * STATE: TOOL_RESULT
+ ***********************/
+
+.state-TOOL_RESULT {
+  display: block;
+  background-color: transparent;
+  border-left: none;
+  line-height: normal;
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+/* Block text inside tool results */
+.state-TOOL_RESULT .block-tag-text {
+  padding: 0.75rem;
+  line-height: 1.5;
+  background-color: rgba(16, 185, 129, 0.05); /* Emerald/green - very light */
+  border-left: 3px solid rgba(16, 185, 129, 0.4); /* Emerald/green */
+  border-radius: 0.375rem;
+  margin: 0 0 8px 0;
+  color: #1E293B; /* slate-800 - to match other text */
+}
+
+/* Paragraphs inside tool results */
+.state-TOOL_RESULT .block-tag-text p {
+  margin: 0 0 0.5rem 0;
+}
+
+/* Remove margin from last paragraph */
+.state-TOOL_RESULT .block-tag-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Headings inside tool results */
+.state-TOOL_RESULT .block-tag-text h1,
+.state-TOOL_RESULT .block-tag-text h2, 
+.state-TOOL_RESULT .block-tag-text h3,
+.state-TOOL_RESULT .block-tag-text h4,
+.state-TOOL_RESULT .block-tag-text h5,
+.state-TOOL_RESULT .block-tag-text h6 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #0F766E; /* emerald-700 - dark green that matches the theme */
+}
+
+.state-TOOL_RESULT .block-tag-text h1 { font-size: 1.8rem; }
+.state-TOOL_RESULT .block-tag-text h2 { font-size: 1.5rem; }
+.state-TOOL_RESULT .block-tag-text h3 { font-size: 1.25rem; }
+.state-TOOL_RESULT .block-tag-text h4 { font-size: 1.1rem; }
+
+/* Lists inside tool results */
+.state-TOOL_RESULT .block-tag-text ul,
+.state-TOOL_RESULT .block-tag-text ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+/* Nested list styles */
+.state-TOOL_RESULT .block-tag-text li > ul,
+.state-TOOL_RESULT .block-tag-text li > ol {
+  margin: 0.5rem 0;
+}
+
+/* List items inside tool results */
+.state-TOOL_RESULT .block-tag-text li {
+  margin-bottom: 0.25rem;
+}
+
+/* Definition list styles */
+.state-TOOL_RESULT .block-tag-text dl {
+  margin: 0.75rem 0;
+}
+
+/* Definition terms */
+.state-TOOL_RESULT .block-tag-text dt {
+  font-weight: 600;
+  margin-top: 0.75rem;
+  color: rgba(6, 182, 212, 0.9); /* Match the cyan color theme */
+}
+
+/* Definition descriptions */
+.state-TOOL_RESULT .block-tag-text dd {
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Inline code */
+.state-TOOL_RESULT .block-tag-text code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* Inline tables within block-tag-text */
+.state-TOOL_RESULT .block-tag-text table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.state-TOOL_RESULT .block-tag-text table-wrapper {
+  overflow-x: auto;
+  display: block;
+}
+
+.state-TOOL_RESULT .block-tag-text th,
+.state-TOOL_RESULT .block-tag-text td {
+  border: 1px solid rgba(16, 185, 129, 0.2); /* emerald themed color */
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.state-TOOL_RESULT .block-tag-text th {
+  background-color: rgba(16, 185, 129, 0.1); /* emerald color at 10% */
+  font-weight: 600;
+}
+
+/* Table blocks for TOOL_RESULT - Plain text with spaces formatting */
+.state-TOOL_RESULT .block-tag-table {
+  background-color: rgba(16, 185, 129, 0.05); /* emerald at 5% */
+  border: 1px solid rgba(16, 185, 129, 0.2); /* emerald at 20% */
+  overflow-x: auto;
+  padding: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  white-space: pre !important; /* Critical: preserves spaces and tabs - overrides any other settings */
+  font-size: 0.875rem;
+  line-height: 1.5;
+  display: block;
+  margin: 0.5rem 0;
+  tab-size: 4;
+  max-width: 100%;
+}
+
+/* Proper table styling for when table elements exist */
+.state-TOOL_RESULT .block-tag-table table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  padding: 0; /* Remove padding when it's a real table */
+  font-family: inherit;
+  white-space: normal;
+}
+
+/* Style both direct and nested table cells */
+.state-TOOL_RESULT .block-tag-table th,
+.state-TOOL_RESULT .block-tag-table td,
+.state-TOOL_RESULT .block-tag-table > tr > th,
+.state-TOOL_RESULT .block-tag-table > tr > td {
+  border: 1px solid rgba(16, 185, 129, 0.2); /* emerald themed border */
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.state-TOOL_RESULT .block-tag-table th,
+.state-TOOL_RESULT .block-tag-table > tr > th {
+  background-color: rgba(16, 185, 129, 0.1); /* emerald at 10% */
+  font-weight: 600;
+}
+
+/* Blockquote styling */
+.state-TOOL_RESULT .block-tag-text blockquote {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border-left: 4px solid rgba(16, 185, 129, 0.3); /* emerald at 30% */
+  background-color: rgba(16, 185, 129, 0.05); /* emerald at 5% */
+  font-style: italic;
+}
+
+/* Citation in blockquotes */
+.state-TOOL_RESULT .block-tag-text blockquote cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-style: normal;
+  text-align: right;
+  color: #059669; /* emerald-600 */
+}
+
+/* Underlined text */
+.state-TOOL_RESULT .block-tag-text u {
+  text-decoration: underline;
+}
+
+/* Strikethrough text */
+.state-TOOL_RESULT .block-tag-text s {
+  text-decoration: line-through;
+}
+
+/* Links */
+.state-TOOL_RESULT .block-tag-text a {
+  color: #059669; /* emerald-600 */
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.state-TOOL_RESULT .block-tag-text a:hover {
+  color: #047857; /* emerald-700 */
+}
+
+/* Strong/bold text */
+.state-TOOL_RESULT .block-tag-text strong {
+  font-weight: 600;
+}
+
+/* Specialized blocks within tool result content */
+.state-TOOL_RESULT .block-tag-code,
+.state-TOOL_RESULT .block-tag-note,
+.state-TOOL_RESULT .block-tag-diagram,
+.state-TOOL_RESULT .block-tag-warning,
+.state-TOOL_RESULT .block-tag-info,
+.state-TOOL_RESULT .block-tag-table,
+.state-TOOL_RESULT .block-tag-rich_text,
+.state-TOOL_RESULT .block-tag-math,
+.state-TOOL_RESULT .block-tag-error,
+.state-TOOL_RESULT .block-tag-success,
+.state-TOOL_RESULT .block-tag-important,
+.state-TOOL_RESULT .block-tag-quote,
+.state-TOOL_RESULT .block-tag-example,
+.state-TOOL_RESULT .block-tag-terminal {
+  display: block;
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Code blocks */
+.state-TOOL_RESULT .block-tag-code {
+  background-color: #F1F5F9; /* slate-100 - light gray */
+  color: #1E293B; /* slate-800 - dark text */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  border: 1px solid rgba(203, 213, 225, 0.8); /* slate-300 at 80% */
+  border-radius: 0.375rem;
+}
+
+/* Note blocks */
+.state-TOOL_RESULT .block-tag-note {
+  background-color: rgba(245, 158, 11, 0.1); /* amber-500 at 10% */
+  border-left: 3px solid rgba(245, 158, 11, 0.4); /* amber-500 at 40% */
+  font-style: italic;
+}
+
+/* Warning blocks */
+.state-TOOL_RESULT .block-tag-warning {
+  background-color: rgba(239, 68, 68, 0.1); /* red-500 at 10% */
+  border-left: 3px solid rgba(239, 68, 68, 0.4); /* red-500 at 40% */
+  font-weight: 500;
+}
+
+/* Info blocks */
+.state-TOOL_RESULT .block-tag-info {
+  background-color: rgba(14, 165, 233, 0.1); /* sky-500 at 10% */
+  border-left: 3px solid rgba(14, 165, 233, 0.4); /* sky-500 at 40% */
+}
+
+/* Info block headings */
+.state-TOOL_RESULT .block-tag-info h1,
+.state-TOOL_RESULT .block-tag-info h2,
+.state-TOOL_RESULT .block-tag-info h3,
+.state-TOOL_RESULT .block-tag-info h4,
+.state-TOOL_RESULT .block-tag-info h5,
+.state-TOOL_RESULT .block-tag-info h6 {
+  color: rgb(3, 105, 161); /* sky-700 */
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Info block paragraphs */
+.state-TOOL_RESULT .block-tag-info p {
+  margin-bottom: 0.75rem;
+}
+
+/* Info block lists */
+.state-TOOL_RESULT .block-tag-info ul,
+.state-TOOL_RESULT .block-tag-info ol {
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+/* Info block list items */
+.state-TOOL_RESULT .block-tag-info li {
+  margin-bottom: 0.5rem;
+}
+
+/* Info block strong text */
+.state-TOOL_RESULT .block-tag-info strong {
+  color: rgb(3, 105, 161); /* sky-700 */
+  font-weight: 600;
+}
+
+/* Error blocks */
+.state-TOOL_RESULT .block-tag-error {
+  background-color: rgba(220, 38, 38, 0.1); /* red-600 at 10% */
+  border-left: 3px solid rgba(220, 38, 38, 0.4); /* red-600 at 40% */
+  color: rgb(185, 28, 28); /* red-700 */
+}
+
+/* Success blocks */
+.state-TOOL_RESULT .block-tag-success {
+  background-color: rgba(22, 163, 74, 0.1); /* green-600 at 10% */
+  border-left: 3px solid rgba(22, 163, 74, 0.4); /* green-600 at 40% */
+  color: rgb(21, 128, 61); /* green-700 */
+}
+
+/* Important blocks */
+.state-TOOL_RESULT .block-tag-important {
+  background-color: rgba(124, 58, 237, 0.1); /* violet-600 at 10% */
+  border-left: 3px solid rgba(124, 58, 237, 0.4); /* violet-600 at 40% */
+  font-weight: 500;
+}
+
+/* Quote blocks */
+.state-TOOL_RESULT .block-tag-quote {
+  background-color: rgba(75, 85, 99, 0.1); /* gray-600 at 10% */
+  border-left: 3px solid rgba(75, 85, 99, 0.4); /* gray-600 at 40% */
+  font-style: italic;
+}
+
+/* Example blocks */
+.state-TOOL_RESULT .block-tag-example {
+  background-color: rgba(217, 119, 6, 0.1); /* amber-600 at 10% */
+  border-left: 3px solid rgba(217, 119, 6, 0.4); /* amber-600 at 40% */
+}
+
+/* Terminal blocks */
+.state-TOOL_RESULT .block-tag-terminal {
+  background-color: #000000;
+  color: #f0f0f0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  overflow-x: auto;
+}
+
+/* Diagram blocks */
+.state-TOOL_RESULT .block-tag-diagram {
+  background-color: rgba(59, 130, 246, 0.05); /* blue-500 at 5% */
+  border: 1px solid rgba(59, 130, 246, 0.2); /* blue-500 at 20% */
+  border-radius: 0.375rem;
+  padding: 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  text-align: left;
+  position: relative;
+}
+
+/* Add data-type badge */
+.state-TOOL_RESULT .block-tag-diagram[data-type]:before {
+  content: attr(data-type);
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.7rem;
+  background-color: rgba(59, 130, 246, 0.2);
+  color: rgba(30, 64, 175);
+  padding: 0.2rem 0.5rem;
+  border-bottom-left-radius: 0.25rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Data attribute styling */
+.state-TOOL_RESULT [data-language],
+.state-TOOL_RESULT [data-type] {
+  position: relative;
+}
+
+/* Language indicator for code blocks */
+.state-TOOL_RESULT [data-language]::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.4rem;
+  border-bottom-left-radius: 0.25rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Type indicator for diagram blocks */
+.state-TOOL_RESULT [data-type]::before {
+  content: attr(data-type);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(59, 130, 246, 0.3);
+  color: white;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.4rem;
+  border-bottom-left-radius: 0.25rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Math blocks */
+.state-TOOL_RESULT .block-tag-math {
+  background-color: rgba(79, 70, 229, 0.05); /* indigo-600 at 5% */
+  border-left: 3px solid rgba(79, 70, 229, 0.4); /* indigo-600 at 40% */
+  font-family: "Georgia", serif; /* Better for math display */
+  text-align: center;
+}
+
+/* Inline math */
+.state-TOOL_RESULT .inline-math {
+  font-family: "Georgia", serif;
+  font-style: italic;
+  padding: 0 0.2rem;
+}
+
+/* Math formula elements */
+.state-TOOL_RESULT .math-formula {
+  display: block;
+  padding: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+/* Math variables */
+.state-TOOL_RESULT .math-var {
+  font-style: italic;
+}
+
+/* Math operators */
+.state-TOOL_RESULT .math-op {
+  padding: 0 0.2rem;
+}
+
+/* Math fractions */
+.state-TOOL_RESULT .math-frac {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.state-TOOL_RESULT .math-num {
+  display: block;
+  border-bottom: 1px solid;
+  padding: 0 0.2rem;
+}
+
+.state-TOOL_RESULT .math-denom {
+  display: block;
+  padding: 0 0.2rem;
+}
+
+/***********************
+ * ACTION BLOCKS
+ ***********************/
+
+/* Action block containers */
+.action-block {
+  display: block;
+  margin: 0;
+}
+
+/* Action container styling */
+.action-container {
+  display: block;
+  border: 1px solid #dbeafe; /* Blue-50 */
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #eff6ff; /* Blue-50 */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Action header styling */
+.action-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #bfdbfe; /* Blue-200 */
+  padding: 8px 12px;
+}
+
+/* Action icon styling */
+.action-icon {
+  font-size: 1.25rem;
+}
+
+/* Action title styling */
+.action-title {
+  font-weight: 500;
+  color: #1e40af; /* Blue-800 */
+  font-size: 0.875rem;
+}
+
+/* Action status styling */
+.action-status {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: #4b5563; /* Gray-600 */
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* In-progress action styling */
+.action-in-progress .action-header {
+  background-color: #dbeafe; /* Blue-100 */
+}
+
+.action-in-progress .action-status {
+  color: #1e40af; /* Blue-800 */
+  animation: pulse 1.5s infinite;
+}
+
+/* Complete action styling */
+.action-complete .action-header {
+  background-color: #bbf7d0; /* Green-200 */
+}
+
+.action-complete .action-status {
+  color: #166534; /* Green-800 */
+  background-color: rgba(167, 243, 208, 0.7); /* Green-200 at 70% */
+}
+
+/* Action result styling */
+.action-result {
+  margin: 4px 12px 8px 12px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #f1f5f9; /* Slate-100 */
+  border: 1px solid rgba(203, 213, 225, 0.5); /* Slate-300 at 50% */
+}
+
+.action-result-code {
+  margin: 0;
+  padding: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  color: #1e293b; /* Slate-800 */
+  background-color: #f1f5f9; /* Slate-100 */
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.action-result-truncated {
+  font-size: 0.75rem;
+  color: #64748b; /* Slate-500 */
+  padding: 4px 12px;
+  background-color: rgba(203, 213, 225, 0.3); /* Slate-300 at 30% */
+  text-align: center;
+  border-top: 1px solid rgba(203, 213, 225, 0.5); /* Slate-300 at 50% */
+}
+
+/* Animation for in-progress actions */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* System Info action styling */
+.action-info .action-header {
+  background-color: #f3f4f6; /* Gray-100 */
+}
+
+.action-info .action-container {
+  border-color: #e5e7eb; /* Gray-200 */
+  background-color: #f9fafb; /* Gray-50 */
+}
+
+.action-info .action-content {
+  background-color: #f9fafb; /* Gray-50 */
+}
+
+/* CLI Execute action styling */
+.action-execute .action-header {
+  background-color: #fff7ed; /* Orange-50 */
+}
+
+.action-execute .action-container {
+  border-color: #fed7aa; /* Orange-200 */
+  background-color: #fff7ed; /* Orange-50 */
+}
+
+.action-execute .action-content {
+  background-color: #fff7ed; /* Orange-50 */
+  font-family: monospace;
+}
+
+/* Mouse action styling */
+.action-mouse .action-header {
+  background-color: #f0f9ff; /* Sky-50 */
+}
+
+.action-mouse .action-container {
+  border-color: #bae6fd; /* Sky-200 */
+  background-color: #f0f9ff; /* Sky-50 */
+}
+
+.action-mouse .action-content {
+  background-color: #f0f9ff; /* Sky-50 */
+}
+
+/* Keyboard action styling */
+.action-keyboard .action-header {
+  background-color: #f5f3ff; /* Violet-50 */
+}
+
+.action-keyboard .action-container {
+  border-color: #ddd6fe; /* Violet-200 */
+  background-color: #f5f3ff; /* Violet-50 */
+}
+
+.action-keyboard .action-content {
+  background-color: #f5f3ff; /* Violet-50 */
+  font-family: monospace;
+}
+
+/* Wait action styling */
+.action-wait .action-header {
+  background-color: #ecfdf5; /* Emerald-50 */
+}
+
+.action-wait .action-container {
+  border-color: #a7f3d0; /* Emerald-200 */
+  background-color: #ecfdf5; /* Emerald-50 */
+}
+
+.action-wait .action-content {
+  background-color: #ecfdf5; /* Emerald-50 */
+}
+
+/* In-progress actions */
+.action-in-progress .action-status {
+  animation: pulse 1.5s infinite;
+  color: #2563eb; /* blue-600 */
+  background-color: rgba(219, 234, 254, 0.4); /* blue-100 at 40% */
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  margin-left: auto;
+  font-family: monospace;
+}
+
+/* Progress bar styling */
+.action-in-progress .action-status {
+  font-family: 'Courier New', monospace;
+  letter-spacing: -0.5px;
+}
+
+/* Completed actions */
+.action-complete .action-status {
+  color: #047857; /* green-700 */
+  background-color: rgba(167, 243, 208, 0.5); /* green-200 at 50% */
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  margin-left: auto;
+}
+
+/* Style for action preview during progressive updates */
+.action-in-progress .action-preview {
+  border-left: 3px solid #3b82f6; /* blue-500 */
+  margin-top: 8px;
+  padding-left: 8px;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
+/* File creation action styling */
+.action-create .action-header {
+  background-color: #dbeafe; /* Blue-100 */
+}
+
+/* File edit action styling */
+.action-edit .action-header {
+  background-color: #e0f2fe; /* Light Blue-100 */
+}
+
+/* Action preview styling */
+.action-preview {
+  margin: 8px 0 4px 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(203, 213, 225, 0.5); /* Slate-300 at 50% */
+  background-color: #f8fafc; /* Slate-50 */
+}
+
+.action-preview-header {
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: #f1f5f9; /* Slate-100 */
+  border-bottom: 1px solid rgba(203, 213, 225, 0.5); /* Slate-300 at 50% */
+  color: #64748b; /* Slate-500 */
+}
+
+.action-preview-content {
+  padding: 8px 12px;
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
+  overflow-x: auto;
+  background-color: #f8fafc; /* Slate-50 */
+  color: #334155; /* Slate-700 */
+  line-height: 1.5;
+  max-height: 200px; /* Limit height with scrollbar for very large content */
+  overflow-y: auto;
+}
+
+/* Diff view styling */
+.action-diff {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background-color: rgba(203, 213, 225, 0.5); /* Slate-300 at 50% */
+  max-width: 100%;
+  overflow-x: auto; /* Enable horizontal scrolling when needed */
+}
+
+.action-diff-old,
+.action-diff-new {
+  background-color: #f8fafc; /* Slate-50 */
+}
+
+.action-diff-header {
+  padding: 4px 8px;
+  font-size: 0.7rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.action-diff-old .action-diff-header {
+  background-color: rgba(220, 38, 38, 0.1); /* Red-600 at 10% */
+  color: #b91c1c; /* Red-700 */
+}
+
+.action-diff-new .action-diff-header {
+  background-color: rgba(22, 163, 74, 0.1); /* Green-600 at 10% */
+  color: #15803d; /* Green-700 */
+}
+
+.action-diff-content {
+  padding: 6px 8px;
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  white-space: pre;
+  overflow-x: auto;
+  max-height: 150px;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0; /* Allows flex content to shrink below content size */
+}
+
+.action-diff-old .action-diff-content {
+  background-color: rgba(254, 226, 226, 0.5); /* Red-100 at 50% */
+}
+
+.action-diff-new .action-diff-content {
+  background-color: rgba(220, 252, 231, 0.5); /* Green-100 at 50% */
+}
+
+/* Insert view styling */
+.action-preview .action-insert {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1px;
+  background-color: rgba(203, 213, 225, 0.5); /* Slate-300 at 50% */
+}
+
+.action-insert-location,
+.action-insert-content {
+  background-color: #f8fafc; /* Slate-50 */
+}
+
+.action-insert-header {
+  padding: 4px 8px;
+  font-size: 0.7rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.action-insert-location .action-insert-header {
+  background-color: rgba(79, 70, 229, 0.1); /* Indigo-600 at 10% */
+  color: #4338ca; /* Indigo-700 */
+}
+
+.action-insert-content .action-insert-header {
+  background-color: rgba(37, 99, 235, 0.1); /* Blue-600 at 10% */
+  color: #1d4ed8; /* Blue-700 */
+}
+
+.action-insert-line {
+  padding: 6px 8px;
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 1rem;
+  line-height: 1.4;
+  text-align: center;
+  font-weight: bold;
+  color: #4338ca; /* Indigo-700 */
+  background-color: rgba(79, 70, 229, 0.05); /* Indigo-600 at 5% */
+  min-width: 60px;
+}
+
+.action-insert-text {
+  padding: 6px 8px;
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: rgba(219, 234, 254, 0.5); /* Blue-100 at 50% */
+  max-width: 100%;
+  box-sizing: border-box;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* File operation styling for various action types */
+.action-block.action-insert .action-header {
+  background-color: #e0e7ff; /* Indigo-100 */
+}
+
+.action-block.action-undo .action-header {
+  background-color: #fef3c7; /* Amber-100 */
+}
+
+/* Action content styling */
+.action-content {
+  display: block;
+  padding: 8px 12px;
+}
+
+/* Action text styling */
+.action-text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  white-space: pre-wrap;
+  color: #374151; /* Gray-700 */
+  line-height: 1.4;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: block;
+}
+
+/***********************
+ * TOOL RESULTS
+ ***********************/
+
+/* Tool result content - raw output */
+.tool-result-content {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  background-color: rgba(17, 24, 39, 0.05);
+  color: #4B5563;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  border-left: 3px solid rgba(6, 182, 212, 0.4); /* Cyan border */
+  margin: 0.5rem 0;
+  overflow-x: auto;
+  max-height: 300px;
+  overflow-y: auto;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  word-break: break-word; /* Allow breaking of long words */
+  word-wrap: break-word; /* Legacy property for compatibility */
+  overflow-wrap: break-word; /* Modern standard */
+}
+
+/* Web search results styling */
+.web-search-results-container {
+  display: block;
+  width: 100%;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #FFFFFF;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(226, 232, 240, 0.6); /* slate-200 at 60% */
+  margin: 1.25rem 0;
+  overflow: hidden;
+}
+
+/* Header for web search results */
+.web-search-header {
+  display: flex;
+  align-items: center;
+  padding: 0.875rem 1.125rem;
+  background-color: #F8FAFC; /* slate-50 */
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8); /* slate-200 at 80% */
+}
+
+.web-search-icon {
+  font-size: 1.25rem;
+  margin-right: 0.75rem;
+  color: #3B82F6; /* blue-500 */
+}
+
+.web-search-query {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #334155; /* slate-700 */
+}
+
+/* Container for all results */
+.web-search-results {
+  padding: 0.5rem 0;
+}
+
+/* Individual search result */
+.web-search-result {
+  display: flex;
+  padding: 0.875rem 1.125rem;
+  border-bottom: 1px solid rgba(241, 245, 249, 0.8); /* slate-100 at 80% */
+  transition: background-color 0.15s ease;
+}
+
+.web-search-result:hover {
+  background-color: #F1F5F9; /* slate-100 */
+}
+
+.web-search-result:hover .web-search-result-number {
+  background-color: #2563EB; /* blue-600 */
+  transform: scale(1.08);
+}
+
+.web-search-result:last-child {
+  border-bottom: none;
+}
+
+/* Result number indicator */
+.web-search-result-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  background-color: #3B82F6; /* blue-500 */
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 50%;
+  margin-right: 0.875rem;
+  flex-shrink: 0;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+/* Content of the result */
+.web-search-result-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Result title */
+.web-search-result-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2563EB; /* blue-600 */
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  line-height: 1.3;
+  transition: all 0.15s ease;
+  display: inline-block;
+}
+
+.web-search-result-title:hover {
+  color: #1D4ED8; /* blue-700 */
+  text-decoration: underline;
+  transform: translateX(2px);
+}
+
+/* Result description */
+.web-search-result-description {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #4B5563; /* gray-600 */
+  margin-bottom: 0.5rem;
+}
+
+/* Result URL */
+.web-search-result-url {
+  font-size: 0.75rem;
+  color: #059669; /* emerald-600 */
+  word-break: break-all;
+  padding-top: 0.125rem;
+}
+
+/* Fallback for raw JSON that wasn't formatted */
+.json-action {
+  display: block;
+  font-family: monospace;
+  font-size: 0.75rem;
+  white-space: pre-wrap;
+  padding: 0.5rem;
+  background-color: #f3f4f6; /* Gray-100 */
+  border-radius: 0.25rem;
+  margin: 0.5rem 0;
+  color: #4b5563; /* Gray-600 */
+  line-height: 1.4;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow-x: auto;
+}
+
+/***********************
+ * DEBUG-ONLY STATES
+ ***********************/
+
+/* Hide debug-only states in production */
+.state-ROLE,
+.state-THINKING,
+.state-TOKEN_UPDATE,
+.state-COMPLETION,
+.state-INITIAL,
+.state-END {
+  display: none;
+}
+
+/***********************
+ * STATE VISUALIZER SPECIFIC
+ ***********************/
+ 
+/* These styles only apply to the state visualizer content */
+.state-visualizer-content .state-transition {
+  margin: 3px 0;
+  padding: 2px 0;
+  color: #4B5563; /* Gray-600 */
+  border-left: 3px solid #D1D5DB; /* Gray-300 */
+  padding-left: 8px;
+  background-color: transparent;
+}
+
+.state-visualizer-content .state-transition-tool {
+  border-left-color: #FBBF24; /* Amber-400 */
+}
+
+.state-visualizer-content .state-transition-action {
+  border-left-color: #60A5FA; /* Blue-400 */
+}
+
+.state-visualizer-content .state-transition-thinking {
+  border-left-color: #A78BFA; /* Purple-400 */
+  font-style: italic;
+}
+
+/* Show debug states only when debug mode is active */
+.debug-mode .state-ROLE,
+.debug-mode .state-THINKING,
+.debug-mode .state-TOKEN_UPDATE,
+.debug-mode .state-COMPLETION,
+.debug-mode .state-INITIAL,
+.debug-mode .state-END {
+  display: block;
+  padding: 2px 5px;
+  margin: 2px 0;
+  border-left: 3px solid #9C27B0;
+  background-color: rgba(156, 39, 176, 0.1);
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/***********************
+ * STATE: FILE_CONTENT
+ ***********************/
+
+.state-FILE_CONTENT {
+  display: block;
+  background-color: transparent;
+  border-left: none;
+  line-height: normal;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+/* File content container */
+.file-content-container {
+  background-color: #F9FAFB; /* gray-50 - very light gray */
+  border-radius: 0.375rem;
+  border: 1px solid rgba(203, 213, 225, 0.8); /* slate-300 at 80% */
+  overflow: hidden;
+  margin: 0.75rem 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  max-width: 100%; /* Ensure it doesn't expand beyond container */
+  width: 100%;
+  display: grid; /* Use grid layout to properly contain children */
+  grid-template-columns: 1fr; /* Single column */
+  contain: layout style paint; /* Use containment to prevent layout effects from escaping */
+}
+
+/* File header with filename and language */
+.file-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F1F5F9; /* slate-100 - slightly darker than content */
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid rgba(203, 213, 225, 0.8); /* slate-300 at 80% */
+}
+
+/* Filename display */
+.file-content-name {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.875rem;
+  color: #334155; /* slate-700 */
+  font-weight: 500;
+}
+
+/* Programming language badge */
+.file-content-language {
+  background-color: rgba(59, 130, 246, 0.15); /* blue-500 at 15% */
+  color: #1E40AF; /* blue-800 */
+  font-size: 0.75rem;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* File content meta information */
+.file-content-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Line count badge */
+.file-content-line-count {
+  color: #64748B; /* slate-500 */
+  font-size: 0.75rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Code content */
+.file-content-code {
+  margin: 0;
+  padding: 0;
+  background-color: #F9FAFB; /* gray-50 - very light gray */
+  color: #1E293B; /* slate-800 */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  overflow-x: auto !important; /* Critical - force horizontal scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 400px; /* Limit height to avoid huge displays */
+  tab-size: 2;
+  width: 100%; /* Full width but won't expand container */
+  max-width: 100% !important; /* Critical - ensure doesn't break container width */
+  box-sizing: border-box;
+  white-space: pre; /* Preserve spaces and allow content to extend */
+  
+  /* Advanced layout containment */
+  display: grid !important; /* Force grid display for containment */
+  grid-template-columns: minmax(0, 1fr) !important; /* Force minmax for overflow handling */
+  contain: content !important; /* Best containment mode for this use case */
+  
+  /* Additional overflow protections */
+  overscroll-behavior: contain; /* Prevent scroll chaining */
+  position: relative; /* Create new containing block */
+  
+  /* Prevent flex layout issues */
+  flex-shrink: 1;
+  flex-basis: auto;
+  min-width: 0 !important; /* Critical for flex items to shrink properly */
+}
+
+/* Individual line in file content */
+.file-line {
+  display: flex;
+  width: 100%;
+  min-height: 1.5rem;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.3); /* slate-200 at 30% */
+  min-width: 0; /* Critical for flexbox children to shrink properly */
+  max-width: 100%; /* Prevent expanding beyond container */
+  overflow-x: visible; /* Let content flow outside the line */
+}
+
+.file-line:hover {
+  background-color: rgba(241, 245, 249, 0.6); /* slate-100 at 60% */
+}
+
+/* Line number column */
+.file-line-number {
+  flex: 0 0 3rem;
+  padding: 0 0.5rem;
+  text-align: right;
+  user-select: none;
+  color: #94A3B8; /* slate-400 */
+  background-color: rgba(241, 245, 249, 0.8); /* slate-100 at 80% */
+  border-right: 1px solid rgba(226, 232, 240, 0.7); /* slate-200 at 70% */
+}
+
+/* Line content */
+.file-line-content {
+  flex: 1;
+  padding: 0 0.5rem;
+  white-space: pre;
+  overflow: visible; /* Allow content to extend beyond line */
+  min-width: 0; /* Critical for flexbox overflow handling */
+  width: 100%;
+  display: block; /* Ensure consistent layout */
+  box-sizing: border-box;
+  text-overflow: clip; /* Don't truncate */
+}
